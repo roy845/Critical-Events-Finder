@@ -1,4 +1,4 @@
-from q2 import find_critical_events
+from critical_events import find_critical_events
 
 # Define days_list as input
 days_list = [
