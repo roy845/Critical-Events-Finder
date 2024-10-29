@@ -1,5 +1,6 @@
 from collections import defaultdict
 from typing import List, Tuple, Dict, Set
+from validations import is_valid_days_list
 
 
 def update_event_intersections(day: List[Tuple[str, str]]) -> Dict[str, Set[str]]:
@@ -48,6 +49,10 @@ def find_critical_events(days_list: List[List[Tuple[str, str]]]) -> List[str]:
     Returns:
     List[str]: A list of events considered critical, as they appear on multiple days in multiple intersections.
     """
+    # Validate days_list and its structure
+    if not is_valid_days_list(days_list):
+        return []  # Return an empty list for invalid input
+
     # Track days each event appears in with at least two intersections
     event_days_count: Dict[str, int] = defaultdict(int)
     critical_events: Set[str] = set()
@@ -57,7 +62,8 @@ def find_critical_events(days_list: List[List[Tuple[str, str]]]) -> List[str]:
         event_intersections = update_event_intersections(day)
 
         # Update count and check for critical events
-        update_event_days_count(event_intersections, event_days_count, critical_events)
+        update_event_days_count(event_intersections,
+                                event_days_count, critical_events)
 
     return list(critical_events)
 

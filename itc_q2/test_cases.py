@@ -5,8 +5,10 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
     (
         # Case 1: Basic case with two days and enough intersections
         [
-            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection3", "event2")],
-            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection4", "event2")]
+            [("intersection1", "event1"), ("intersection2",
+                                           "event1"), ("intersection3", "event2")],
+            [("intersection1", "event1"), ("intersection2",
+                                           "event1"), ("intersection4", "event2")]
         ],  # Expected output
         ["event1"]
     ),
@@ -23,9 +25,12 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
     (
         # Case 3: Multiple critical events that meet conditions over multiple days
         [
-            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection3", "event2")],
-            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection3", "event2")],
-            [("intersection1", "event1"), ("intersection2", "event2"), ("intersection3", "event2")]
+            [("intersection1", "event1"), ("intersection2",
+                                           "event1"), ("intersection3", "event2")],
+            [("intersection1", "event1"), ("intersection2",
+                                           "event1"), ("intersection3", "event2")],
+            [("intersection1", "event1"), ("intersection2",
+                                           "event2"), ("intersection3", "event2")]
         ],
         ["event1"]
     ),
@@ -127,6 +132,64 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
         ],
         ["event2"]
     ),
+    # Invalid cases
+    (
+        # Case 15: Empty days_list
+        [],
+        []
+    ),
+    (
+        # Case 16: Contains empty day list
+        [
+            []
+        ],
+        []
+    ),
+    (
+        # Case 17: Contains empty tuple in a day
+        [
+            [("intersection1", "event1"), ()]
+        ],
+        []
+    ),
+    (
+        # Case 18: Contains tuple with only one element
+        [
+            [("intersection1",)]
+        ],
+        []
+    ),
+    (
+        # Case 19: Contains tuple with more than two elements
+        [
+            [("intersection1", "event1", "extra")]
+        ],
+        []
+    ),
+    (
+        # Case 20: Tuple contains non-string elements
+        [
+            [(1, "event1"), ("intersection2", 2)]
+        ],
+        []
+    ),
+    (
+        # Case 21: Contains tuple with empty strings
+        [
+            [("", "event1"), ("intersection1", "")]
+        ],
+        []
+    ),
+    (
+        # Case 22: Non-list day structure
+        [
+            ("intersection1", "event1")
+        ],
+        []
+    ),
+    (
+        # Case 23: days_list is None
+        None,
+        []
+    ),
 ]
-
-
