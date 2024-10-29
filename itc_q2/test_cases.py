@@ -192,4 +192,31 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
         None,
         []
     ),
+    (
+        # Case 24: Tuples are filled with None
+        [
+            [(None, None)],
+            [(None, None)],
+            [(None, None)],
+        ],
+        []
+    ),
+    (
+        # Case 25: Intersection are filled with None
+        [
+            [(None, "event1"), (None, "event2")],
+            [(None, "event3"), (None, "event5")],
+            [(None, "event7"), (None, "event4")]
+        ],
+        []
+    ),
+    (
+        # Case 26: Events are filled with None
+        [
+            [("intersection1", None), ("intersection2", None)],
+            [("intersection8", None), ("intersection10", None)],
+            [("intersection7", None), ("intersection4", None)]
+        ],
+        []
+    ),
 ]
