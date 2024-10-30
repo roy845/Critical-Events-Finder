@@ -219,4 +219,17 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
         ],
         []
     ),
+    (
+        # Case 27: A case where each day has more than two tuples
+        [
+            [("intersection1", "event1"), ("intersection2", "event1"),
+             ("intersection3", "event2"), ("intersection4", "event3")],
+            [("intersection9", "event1"), ("intersection10", "event1"),
+             ("intersection3", "event2"), ("intersection5", "event3")],
+            [("intersection7", "event1"), ("intersection6", "event1"),
+             ("intersection3", "event2"), ("intersection6", "event3")],
+        ],
+        # Expected output, as "event1" appears across multiple days and intersections
+        ["event1"]
+    ),
 ]
