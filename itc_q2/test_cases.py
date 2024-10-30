@@ -263,5 +263,188 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
              ("intersection4", "event2"), ("intersection5", "event2"), ("intersection4", "event3"), ("intersection15", "event3")]
         ],  # Expected output
         ["event1", "event2", "event3", "event4"]
+    ),
+    (
+        # Case 31: Event only appears across intersections on non-consecutive days
+        [
+            [("intersection1", "event9"), ("intersection2", "event9")],
+            [("intersection3", "event10"), ("intersection4", "event9")],
+            [("intersection1", "event9"), ("intersection2", "event9")]
+        ],
+        ["event9"]
+    ),
+    (
+        # Case 32: Event appears in different intersections each day
+        [
+            [("intersection1", "event11"), ("intersection2", "event11")],
+            [("intersection3", "event11"), ("intersection4", "event11")],
+            [("intersection5", "event11"), ("intersection6", "event11")]
+        ],
+        ["event11"]
+    ),
+    (
+        # Case 33: Event meets criteria but switches between two intersections over days
+        [
+            [("intersection1", "event12")],
+            [("intersection2", "event12"), ("intersection1", "event12")],
+            [("intersection1", "event12")]
+        ],
+        []
+    ),
+    (
+        # Case 34: Non-continuous appearance with gaps in days
+        [
+            [("intersection1", "event13"), ("intersection2", "event13")],
+            [],
+            [("intersection1", "event13"), ("intersection2", "event13")]
+        ],
+        ["event13"]
+    ),
+    (
+        # Case 35: Frequent event across multiple intersections without sufficient days
+        [
+            [("intersection1", "event14"), ("intersection2",
+                                            "event14"), ("intersection3", "event14")],
+            [("intersection4", "event14")]
+        ],
+        []
+    ),
+    (
+        # Case 36: Critical event only on certain intersections
+        [
+            [("intersection1", "event15"), ("intersection2", "event15")],
+            [("intersection3", "event15"), ("intersection4", "event15")],
+            [("intersection1", "event16"), ("intersection2", "event16")]
+        ],
+        ["event15"]
+    ),
+    (
+        # Case 37: Intermittent appearance of multiple events
+        [
+            [("intersection1", "event17"), ("intersection2", "event17")],
+            [("intersection1", "event17"), ("intersection2", "event18")],
+            [("intersection1", "event17"), ("intersection3", "event18")]
+        ],
+        []
+    ),
+    (
+        # Case 38: Event appears in exactly 3 intersections but only over 1 day
+        [
+            [("intersection1", "event19"), ("intersection2",
+                                            "event19"), ("intersection3", "event19")]
+        ],
+        []
+    ),
+    (
+        # Case 39: Edge case with repeated intersections on the same day
+        [
+            [("intersection1", "event20"), ("intersection1",
+                                            "event20"), ("intersection1", "event20")],
+            [("intersection1", "event20"), ("intersection2", "event20")],
+            [("intersection1", "event20")]
+        ],
+        []
+    ),
+    (
+        # Case 40: Events with unique intersections and only partial continuity
+        [
+            [("intersection1", "event21"), ("intersection2", "event21")],
+            [("intersection3", "event21"), ("intersection4", "event22")]
+        ],
+        []
+    ),
+    (
+        # Case 41: Multiple non-overlapping events without sufficient intersections
+        [
+            [("intersection1", "event23"), ("intersection2", "event24")],
+            [("intersection1", "event25"), ("intersection2", "event26")]
+        ],
+        []
+    ),
+    (
+        # Case 42: Valid but minimal continuity of events across days
+        [
+            [("intersection1", "event27"), ("intersection2", "event27")],
+            [("intersection1", "event27")]
+        ],
+        []
+    ),
+    (
+        # Case 43: High intersection count with critical patterns
+        [
+            [("intersection1", "event28"), ("intersection2",
+                                            "event28"), ("intersection3", "event28")],
+            [("intersection1", "event29"), ("intersection2",
+                                            "event29"), ("intersection3", "event29")],
+            [("intersection101", "event29"), ("intersection42",
+                                              "event29"), ("intersection53", "event29")],
+            [("intersection4", "event28"), ("intersection5", "event28")]
+        ],
+        ["event28", "event29"]
+    ),
+    (
+        # Case 44: Event only appears once per day across multiple intersections
+        [
+            [("intersection1", "event30")],
+            [("intersection2", "event30")],
+            [("intersection3", "event30")]
+        ],
+        []
+    ),
+    (
+        # Case 45: Event appears on alternate days but maintains continuity in intersections
+        [
+            [("intersection1", "event31"), ("intersection2", "event31")],
+            [],
+            [("intersection1", "event31"), ("intersection2", "event31")]
+        ],
+        ["event31"]
+    ),
+    (
+        # Case 46: Multiple non-critical events with varying appearances
+        [
+            [("intersection1", "event32"), ("intersection2", "event33")],
+            [("intersection1", "event34"), ("intersection2", "event35")]
+        ],
+        []
+    ),
+    (
+        # Case 47: Rare event with exact continuity requirements
+        [
+            [("intersection1", "event36"), ("intersection2", "event36")],
+            [("intersection1", "event36"), ("intersection3", "event36")],
+            [("intersection1", "event36"), ("intersection4", "event36")]
+        ],
+        ["event36"]
+    ),
+    (
+        # Case 48: High frequency of different events but insufficient overlap
+        [
+            [("intersection1", "event37"), ("intersection2",
+                                            "event38"), ("intersection3", "event39")],
+            [("intersection1", "event37"), ("intersection2",
+                                            "event39"), ("intersection3", "event40")],
+            [("intersection1", "event37"), ("intersection2", "event38")]
+        ],
+        []
+    ),
+    (
+        # Case 49: Consecutive identical intersections across days for multiple events
+        [
+            [("intersection1", "event41"), ("intersection2", "event41")],
+            [("intersection1", "event42"), ("intersection2", "event42")],
+            [("intersection1", "event41"), ("intersection2", "event41")]
+        ],
+        ["event41"]
+    ),
+    (
+        # Case 50: Sparse appearances of multiple events, only one critical
+        [
+            [("intersection1", "event43"), ("intersection2", "event43")],
+            [],
+            [("intersection1", "event44"), ("intersection2", "event43")],
+            [("intersection1", "event43"), ("intersection2", "event43")]
+        ],
+        ["event43"]
     )
 ]
