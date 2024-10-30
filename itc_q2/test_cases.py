@@ -232,4 +232,36 @@ test_cases: List[Tuple[List[List[Tuple[str, str]]], List[str]]] = [
         # Expected output, as "event1" appears across multiple days and intersections
         ["event1"]
     ),
+    (
+        # Case 28:Two critical events
+        [
+            [("intersection1", "event1"), ("intersection2", "event1"),
+             ("intersection3", "event2"), ("intersection4", "event2")],
+            [("intersection1", "event1"), ("intersection2", "event1"),
+             ("intersection4", "event2"), ("intersection5", "event2")]
+        ],  # Expected output
+        ["event1", "event2"]
+    ),
+    (
+        # Case 29:Three critical events
+        [
+            [("intersection1", "event1"), ("intersection2", "event1"),
+             ("intersection3", "event2"), ("intersection4", "event2"), ("intersection4", "event3"), ("intersection15", "event3")],
+            [("intersection1", "event1"), ("intersection2", "event1"),
+             ("intersection4", "event2"), ("intersection5", "event2"), ("intersection4", "event3"), ("intersection15", "event3")]
+        ],  # Expected output
+        ["event1", "event2", "event3"]
+    ),
+    (
+        # Case 30:Four critical events
+        [
+            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection19", "event4"), ("intersection21", "event4"), ("intersection15", "event4"),
+             ("intersection3", "event2"), ("intersection4", "event2"), ("intersection4", "event3"), ("intersection15", "event3")],
+            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection19", "event4"), ("intersection21", "event4"), ("intersection15", "event4"),
+             ("intersection4", "event2"), ("intersection5", "event2"), ("intersection4", "event3"), ("intersection15", "event3")],
+            [("intersection1", "event1"), ("intersection2", "event1"), ("intersection19", "event4"), ("intersection21", "event4"), ("intersection15", "event4"),
+             ("intersection4", "event2"), ("intersection5", "event2"), ("intersection4", "event3"), ("intersection15", "event3")]
+        ],  # Expected output
+        ["event1", "event2", "event3", "event4"]
+    )
 ]
