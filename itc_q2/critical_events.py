@@ -13,9 +13,13 @@ def update_event_intersections(day: List[Tuple[str, str]]) -> Dict[str, Set[str]
     Returns:
     Dict[str, Set[str]]: A dictionary where keys are events and values are sets of intersections where the event appears.
     """
+    # Initialize a dictionary where each event (key) maps to a set of intersections (values)
     event_intersections: Dict[str, Set[str]] = defaultdict(set)
+    # Iterate over each (intersection, event) pair in the list for the da
     for intersection, event in day:
+        # Add the intersection to the set of intersections for the corresponding event
         event_intersections[event].add(intersection)
+    # Return the dictionary containing events and their associated intersections
     return event_intersections
 
 
@@ -29,12 +33,16 @@ def update_event_days_count(event_intersections: Dict[str, Set[str]], event_days
     event_days_count (Dict[str, int]): A dictionary to track the number of days each event appears in multiple intersections.
     critical_events (Set[str]): A set to collect events that meet the critical threshold.
     """
+    # Iterate over each event and its corresponding set of intersections
     for event, intersections in event_intersections.items():
-        if len(intersections) >= 2:  # Minimum 2 intersections to consider
-            event_days_count[event] += 1  # Count this day for the event
+        # Check if the event appears in at least two intersections
+        if len(intersections) >= 2:
+            # Increment the count of days this event appears in multiple intersections
+            event_days_count[event] += 1
 
-            # Add to critical events if it has appeared on 2+ days in 2+ intersections each day
+            # If the event appears on 2 or more days in multiple intersections, mark it as critical
             if event_days_count[event] >= 2:
+                # Add the event to the critical events set
                 critical_events.add(event)
 
 
@@ -49,22 +57,25 @@ def find_critical_events(days_list: List[List[Tuple[str, str]]]) -> List[str]:
     Returns:
     List[str]: A list of events considered critical, as they appear on multiple days in multiple intersections.
     """
-    # Validate days_list and its structure
+    # Validate the structure of days_list to ensure it meets the expected format
     if not is_valid_days_list(days_list):
-        return []  # Return an empty list for invalid input
+        return []  # Return an empty list if days_list is invalid
 
-    # Track days each event appears in with at least two intersections
+     # Initialize a dictionary to track the count of days each event appears in multiple intersections
     event_days_count: Dict[str, int] = defaultdict(int)
+    # Initialize a set to store events that are considered critical
     critical_events: Set[str] = set()
 
+    # Process each day's list of intersections and events
     for day in days_list:
-        # Get intersections seen today for each event
+        # For the current day, get a mapping of each event to the intersections it appears in
         event_intersections = update_event_intersections(day)
 
-        # Update count and check for critical events
+        # Update the day count and identify any critical events
         update_event_days_count(event_intersections,
                                 event_days_count, critical_events)
 
+    # Convert the critical events set to a list and return it
     return list(critical_events)
 
 
