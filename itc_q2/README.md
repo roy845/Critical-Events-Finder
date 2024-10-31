@@ -33,9 +33,9 @@ Clone the repository and ensure you have the latest Python installed on your mac
 
 2. <b> cd itc_q2 </b>
 
-3. After you changed the directory to itc_q2 install the virtual environment using the command: <b> python -m venv venv </b>
+3. After you changed the directory to <b> itc_q2 </b> install the virtual environment using the command: <b> python -m venv venv </b>
 
-4. Active the virtual environment using the command: .\venv\Scripts\activate
+4. Active the virtual environment using the command: <b> .\venv\Scripts\activate </b>
 
 5. Upgrade pip using the command:
    <b> python -m pip install --upgrade pip </b>
@@ -53,7 +53,7 @@ and the results will show up in the terminal of your IDE.
 
 ## Testing
 
-To test the function find_critical_events ensure you are in the itc_q2 directory and the virtual environment you install in the previous step is activated using the command:\venv\Scripts\activate.
+To test the function find_critical_events ensure you are in the <b> itc_q2 </b> directory and the virtual environment you install in the previous step is activated using the command: <b> .\venv\Scripts\activate. </b>
 once the environment is activated hit the command <b>pytest</b> in the terminal and the test would run immediately.
 
 ## Code Walkthrough
