@@ -74,8 +74,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - event_intersections is a dictionary where each event key points to a set of intersections it appears in.
 
-- <b> Why i chose it:</b>
-
   - defaultdict(set) allows automatic initialization of empty sets when a new key is
     encountered, making it ideal for this use case as it avoids explicitly checking for the
     existence of a key before adding to it.
@@ -87,8 +85,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - event_days_count keeps track of the number of days each event appears in multiple intersections.
 
-- <b> Why i chose it: </b>
-
   - defaultdict(int) provides a counter structure, initializing integer values to zero by
     default, which makes it easy to increment without checking if the key exists.
 
@@ -98,8 +94,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - critical_events is a set to collect events that meet the critical threshold
   (appearing on multiple days in multiple intersections).
-
-- <b> Why i chose it: </b>
 
   - Set structure is chosen because it automatically manages unique entries without
     duplicates, which is essential since events shouldn’t be counted multiple times once
@@ -112,8 +106,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - days_list represents multiple days of events with each day's events as a list of
   tuples, and each tuple includes an intersection and an event.
-
-- <b> Why i chose it: </b>
 
   - Lists provide a simple and direct way to hold ordered data without needing to enforce
     uniqueness. They are convenient to iterate over and have an O(1) access time for elements, making them suitable for this structure, especially since we’re
