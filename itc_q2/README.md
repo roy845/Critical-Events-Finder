@@ -8,6 +8,7 @@ This project implements a Python function, <code>find_critical_events</code>, de
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Testing](#testing)
 - [Code Walkthrough](#code-walkthrough)
 - [Examples](#examples)
 - [Data Structure Choice](#data-structure-choice)
@@ -26,16 +27,34 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 
 ## Installation
 
-Clone the repository and ensure you have Python 3.6+ installed. This function relies only on the standard Python library, so no additional packages are required.
+Clone the repository and ensure you have the latest Python installed on your machine.
 
-git clone https://github.com/roy845/Critical-Events-Finder.git
-cd itc_q2
+1. <b> git clone </b> https://github.com/roy845/Critical-Events-Finder.git
+
+2. <b> cd itc_q2 </b>
+
+3. After you changed the directory to itc_q2 install the virtual environment using the command: <b> python -m venv venv </b>
+
+4. Active the virtual environment using the command: .\venv\Scripts\activate
+
+5. Upgrade pip using the command:
+   <b> python -m pip install --upgrade pip </b>
+
+6. Run the command: <b> pip install -r requirements.txt </b>
 
 ## Usage
 
 To use the <code>find_critical_events</code> function, you can call it with a list of days. Each day should be a list of tuples, where each tuple contains an intersection and an event.
 
 ![alt text](image.png)
+
+Go to the main.py file and run the command python main.py
+and the results will show up in the terminal of your IDE.
+
+## Testing
+
+To test the function find_critical_events ensure you are in the itc_q2 directory and the virtual environment you install in the previous step is activated using the command:\venv\Scripts\activate.
+once the environment is activated hit the command <b>pytest</b> in the terminal and the test would run immediately.
 
 ## Code Walkthrough
 
@@ -74,8 +93,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - event_intersections is a dictionary where each event key points to a set of intersections it appears in.
 
-- <b> Why i chose it:</b>
-
   - defaultdict(set) allows automatic initialization of empty sets when a new key is
     encountered, making it ideal for this use case as it avoids explicitly checking for the
     existence of a key before adding to it.
@@ -87,8 +104,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - event_days_count keeps track of the number of days each event appears in multiple intersections.
 
-- <b> Why i chose it: </b>
-
   - defaultdict(int) provides a counter structure, initializing integer values to zero by
     default, which makes it easy to increment without checking if the key exists.
 
@@ -98,8 +113,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - critical_events is a set to collect events that meet the critical threshold
   (appearing on multiple days in multiple intersections).
-
-- <b> Why i chose it: </b>
 
   - Set structure is chosen because it automatically manages unique entries without
     duplicates, which is essential since events shouldn’t be counted multiple times once
@@ -112,8 +125,6 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 
 - days_list represents multiple days of events with each day's events as a list of
   tuples, and each tuple includes an intersection and an event.
-
-- <b> Why i chose it: </b>
 
   - Lists provide a simple and direct way to hold ordered data without needing to enforce
     uniqueness. They are convenient to iterate over and have an O(1) access time for elements, making them suitable for this structure, especially since we’re
