@@ -1,7 +1,7 @@
 
 1. defaultdict with set for event_intersections:
 
-- event_intersections is a dictionary where each event key points to a set of intersections it appears in.
+- event_intersections is a dictionary where each event key points to a set of intersections it appears in on a single day.
 
 - Why i chose it:
     -   defaultdict(set) allows automatic initialization of empty sets when a new key is 

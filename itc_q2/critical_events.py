@@ -77,30 +77,3 @@ def find_critical_events(days_list: List[List[Tuple[str, str]]]) -> List[str]:
 
     # Convert the critical events set to a list and return it
     return list(critical_events)
-
-
-# Time complexity analysis:
-
-""" 
-Outer Loop (over days_list):
-The main loop iterates over each day's list of events, so if there are D days, this loop runs D times.
-
-Inner Loop (over each day's events):
-Within each day, it iterates over the events for that day. Suppose each day has an average of E events (intersections, event pairs). 
-This inner loop runs E times for each day, making the complexity of the nested loops O(D×E).
-
-Updating event_intersections (using a set):
-For each event in a day's list, the code adds intersections to a set associated with each event. The insertion into a set takes
-O(1) on average, so processing the events in each day is approximately O(E).
-
-Final Loop (over event_intersections dictionary):
-After processing each day, another loop goes through the event_intersections dictionary to count intersections for each event. 
-Since each day has at most E events, this loop is O(E) as well.
-
-
-Overall Complexity
-Since the code essentially processes D days with an average of E events per day, the total time complexity is: O(D×E).
-If D is the number of days and E is the number of events per day, the complexity is linear in terms of both D and E. 
-Thus, the time complexity is O(D×E).
-
-"""

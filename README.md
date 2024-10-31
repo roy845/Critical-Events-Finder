@@ -56,7 +56,13 @@ To use the <code>find_critical_events</code> function, you can call it with a li
 3. <b>Data Structures:</b>
 
    - <b> event_days_count (dictionary):</b> Tracks how many days each event appears with sufficient intersections.
+
    - <b> event_intersections (dictionary of sets):</b> Tracks intersections for each event on a single day.
+
+   - <b> critical_events (set): </b> collect events that meet the critical threshold.
+
+   - <b>days_list (list of lists of tuples): </b> represents multiple days of events with each day's events as a list of
+     tuples, and each tuple includes an intersection and an event.
 
 ## Examples
 
