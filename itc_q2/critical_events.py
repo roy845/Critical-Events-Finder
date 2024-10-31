@@ -2,6 +2,10 @@ from collections import defaultdict
 from typing import List, Tuple, Dict, Set
 from validations import is_valid_days_list
 
+# Threshold constants for easy configuration
+MIN_DAYS: int = 2
+MIN_INTERSECTIONS: int = 2
+
 
 def update_event_intersections(day: List[Tuple[str, str]]) -> Dict[str, Set[str]]:
     """
@@ -36,12 +40,12 @@ def update_event_days_count(event_intersections: Dict[str, Set[str]], event_days
     # Iterate over each event and its corresponding set of intersections
     for event, intersections in event_intersections.items():
         # Check if the event appears in at least two intersections
-        if len(intersections) >= 2:
+        if len(intersections) >= MIN_INTERSECTIONS:
             # Increment the count of days this event appears in multiple intersections
             event_days_count[event] += 1
 
             # If the event appears on 2 or more days in multiple intersections, mark it as critical
-            if event_days_count[event] >= 2:
+            if event_days_count[event] >= MIN_DAYS:
                 # Add the event to the critical events set
                 critical_events.add(event)
 
