@@ -1,0 +1,48 @@
+
+1. defaultdict with set for event_intersections:
+
+- event_intersections is a dictionary where each event key points to a set of intersections it appears in.
+
+- Why i chose it:
+    -   defaultdict(set) allows automatic initialization of empty sets when a new key is 
+        encountered, making it ideal for this use case as it avoids explicitly checking for the 
+        existence of a key before adding to it.
+
+    -   Set as values is chosen to prevent duplicate intersections for an event, as only unique 
+        intersections are needed. Adding elements to a set is average O(1), ensuring efficiency.
+
+2. defaultdict with int for event_days_count:
+
+- event_days_count keeps track of the number of days each event appears in multiple intersections.
+
+- Why i chose it:
+    -   defaultdict(int) provides a counter structure, initializing integer values to zero by 
+        default, which makes it easy to increment without checking if the key exists.
+
+    - The integer counters allow simple addition operations, maintaining an average O(1) time complexity per update.
+
+3. set for critical_events:
+
+- critical_events is a set to collect events that meet the critical threshold 
+(appearing on multiple days in multiple intersections).
+
+- Why i chose it:
+    -   Set structure is chosen because it automatically manages unique entries without 
+        duplicates, which is essential since events shouldn’t be counted multiple times once 
+        they are identified as critical.
+
+    -   Membership checks and additions in a set are average O(1), which helps keep the operation efficient.
+        Lists (List[Tuple[str, str]] and List[List[Tuple[str, str]]]):
+
+4. Lists (List[Tuple[str, str]] and List[List[Tuple[str, str]]]):
+
+- days_list represents multiple days of events with each day's events as a list of 
+  tuples, and each tuple includes an intersection and an event.
+
+- Why i chose it:
+    -   Lists provide a simple and direct way to hold ordered data without needing to enforce 
+        uniqueness. They are convenient to iterate over and have an O(1) access time for elements, making them suitable for this structure, especially since we’re 
+        iterating over each day and its events sequentially.
+
+    -   Lists of tuples allow compact storage and make the relationship between intersection 
+        and event straightforward to process.

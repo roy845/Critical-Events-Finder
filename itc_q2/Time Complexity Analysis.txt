@@ -1,0 +1,80 @@
+Time Complexity Analysis
+
+1. is_valid_days_list
+The is_valid_days_list function validates that days_list is a non-empty list of lists containing tuples, 
+where each tuple has exactly two non-empty strings.
+
+- Checking if days_list is empty:
+
+    - The check if not days_list: is O(1).
+
+- Outer Loop (over days_list):
+    - The function iterates over each day in days_list, which has D days. This loop runs D times.
+
+- Inner Loop (over each entry in day):
+
+    - For each day, it iterates over each entry, which contains an (intersection, event) tuple. 
+    Let E represent the average number of entries per day.
+
+    - This loop executes E times for each day, leading to a total of O(D×E) iterations across all days.
+
+- Validation of each entry:
+
+    - Each entry check, including checking the tuple type, length, and that each element is a non-empty string, takes O(1).
+
+Therefore, the time complexity of is_valid_days_list is:O(D×E)
+
+2. update_event_intersections
+The update_event_intersections function creates a dictionary (event_intersections) where each event maps to a set of intersections 
+it appears in for a given day.
+
+- Loop over each entry in day:
+
+    - The function iterates over each (intersection, event) pair in day.
+    - This loop runs E times for the given day.
+
+- Insertion into event_intersections:
+    - For each event, adding an intersection to a set takes O(1) on average, making the entire loop O(E).
+
+Thus, the time complexity of update_event_intersections is:O(E)
+
+3. update_event_days_count
+The update_event_days_count function updates the count of days each event appears in multiple intersections and adds critical events to 
+the critical_events set if they meet a specific threshold.
+
+- Loop over event_intersections:
+    - The function iterates over each event and its set of intersections in event_intersections.
+    - Since there are at most E events per day, this loop is O(E).
+
+- Condition Checks and Updates:
+    - Checking if intersections has at least two entries, incrementing event_days_count, and potentially adding an event to critical_events 
+    each take O(1) on average.
+
+Thus, the time complexity of update_event_days_count is:O(E)
+
+4. find_critical_events
+The find_critical_events function uses is_valid_days_list, update_event_intersections, and update_event_days_count 
+to find critical events across multiple days.
+
+- Validation of days_list:
+
+    - is_valid_days_list(days_list) runs with complexity O(D×E).
+
+- Outer Loop (over days_list):
+
+    - The main loop iterates over each day in days_list, which runs D times.
+
+- Processing Each Day:
+
+    - For each day, it calls update_event_intersections (with complexity O(E)) and update_event_days_count (with complexity O(E)), resulting in 
+      O(E)+O(E)=O(E) for each day.
+
+Thus, the total time complexity of find_critical_events, including the validation step, is: O(D×E)+O(D×E)=O(D×E)
+
+
+Summary of Overall Complexity
+The total time complexity for the find_critical_events function, accounting for all helper functions, is:O(D×E)
+
+where:
+- D is the number of days in days_list.
+- E is the average number of events per day.
