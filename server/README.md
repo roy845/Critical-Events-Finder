@@ -32,7 +32,25 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 
 ## Technologies Used
 
-![alt text](image-2.png)
+- **Docker**
+  <img src="https://icon-icons.com/icons2/2699/PNG/512/docker_official_logo_icon_169250.png" width="124px" height="124px">
+- **Docker**
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7swv72e-AJAfT3hZdULsmYXetYSldgE78ag&s" width="124px" height="124px">
+
+- **React**
+  <img src="https://upload.wikimedia.org/wikipedia/he/a/a7/React-icon.svg" width="124px" height="124px">
+
+  - **Tailwindcss**
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_BuIzY141a5nIZoGEQkFYPN_f3bQddC4uu5ctRPO1Ftp6BNy_iV5foebwEIYesnZLA6c&usqp=CAU" width="60px" height="60px">
+
+  - **Typescript**
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuiTDrB4jE3RaO72W0feOQP1XcZhjTrOBuYcqcXNSIQKeOx4iaA75cEZVN5BDrkQcLYK0&usqp=CAU" width="60px" height="60px">
+
+- **Python**
+  ![alt text](image-2.png)
+
+- **Flask**
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRubRv-E-PFnEuyYITdMYPqMXrBLOIKUTW8ug&s">
 
 ## Installation
 
