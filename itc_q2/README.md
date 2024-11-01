@@ -34,7 +34,8 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 
 - **Docker**
   <img src="https://icon-icons.com/icons2/2699/PNG/512/docker_official_logo_icon_169250.png" width="124px" height="124px">
-- **Docker**
+
+- **Docker Compose**
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7swv72e-AJAfT3hZdULsmYXetYSldgE78ag&s" width="124px" height="124px">
 
 - **React**
