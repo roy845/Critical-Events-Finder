@@ -2,6 +2,14 @@
 
 This project implements a Python function, <code>find_critical_events</code>, designed to identify "critical" events from a series of traffic data entries. An event is considered critical if it appears in two or more intersections on multiple days.
 
+## LIVE Deploy In React.ts And Flask
+
+https://server-api-edmt.onrender.com/
+
+## Swagger Docs (Server Documentation)
+
+https://server-api-edmt.onrender.com/api/docs
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -13,6 +21,7 @@ This project implements a Python function, <code>find_critical_events</code>, de
 - [Examples](#examples)
 - [Data Structure Choice](#data-structure-choice)
 - [Time Complexity Analysis](#time-complexity-analysis)
+- [Screenshots](#screenshots)
 
 ## Project Overview
 
@@ -214,3 +223,37 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 - D is the number of days in days_list.
 - E is the average number of events per day.
+
+## Screenshots
+
+<b> Landing Page </b>
+
+![alt text](image-3.png)
+
+<b> Adding days </b>
+
+![alt text](image-4.png)
+
+<b> Adding (intersection,event)s </b>
+
+![alt text](image-5.png)
+
+<b> Adding data from Excel </b>
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+<b> Generating results:(Critical Events) </b>
+
+![alt text](image-8.png)
+
+<b> Invalid days number input </b>
+
+![alt text](image-9.png)
+
+![alt text](image-11.png)
+
+<b> Negative days number input </b>
+
+![alt text](image-10.png)
