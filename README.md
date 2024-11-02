@@ -28,6 +28,7 @@ https://server-api-edmt.onrender.com/api/docs
 - [Data Structure Choice](#data-structure-choice)
 - [Time Complexity Analysis](#time-complexity-analysis)
 - [Screenshots](#screenshots)
+- [Video demo](#video-demo)
 
 ## Project Overview
 
@@ -285,3 +286,7 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 <b> Negative days number input </b>
 
 ![alt text](image-10.png)
+
+## Video demo
+
+ <iframe width="560" height="315" src="https://www.youtube.com/watch?v=pckhiageZ8k" frameborder="1" allowfullscreen></iframe>
