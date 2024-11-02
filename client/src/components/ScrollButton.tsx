@@ -1,19 +1,8 @@
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import useScroll from "../hooks/useScroll";
 
 function ScrollButton() {
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const { scrollToTop, scrollToBottom } = useScroll();
 
   return (
     <div className="fixed bottom-4 right-4 flex flex-col space-y-2">
