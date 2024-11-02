@@ -1,5 +1,3 @@
-// ScrollButton.js
-import React from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 function ScrollButton() {
