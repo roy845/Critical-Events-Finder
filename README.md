@@ -289,4 +289,4 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ## Video demo
 
- <iframe width="560" height="315" src="https://www.youtube.com/watch?v=pckhiageZ8k" frameborder="1" allowfullscreen></iframe>
+<video width="560" height="315" src="https://go.screenpal.com/watch/cZXnQEncydA" frameborder="1" allowfullscreen></video>
