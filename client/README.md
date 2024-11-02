@@ -41,6 +41,9 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 - **React**
   <img src="https://upload.wikimedia.org/wikipedia/he/a/a7/React-icon.svg" width="124px" height="124px">
 
+- **Redux**
+  <img src = "https://www.svgrepo.com/show/303557/redux-logo.svg" width = "60px" height = "60px">
+
   - **Tailwindcss**
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_BuIzY141a5nIZoGEQkFYPN_f3bQddC4uu5ctRPO1Ftp6BNy_iV5foebwEIYesnZLA6c&usqp=CAU" width="60px" height="60px">
 
