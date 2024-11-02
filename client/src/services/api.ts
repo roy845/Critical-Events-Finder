@@ -6,7 +6,7 @@ export const getCriticalEvents = async (
 ): Promise<CriticalEventsResponse> => {
   try {
     const response = await axiosInstance.post<CriticalEventsResponse>(
-      "critical-events/",
+      "/critical-events/",
       {
         days_list: daysList,
       }
