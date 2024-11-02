@@ -2,11 +2,15 @@
 
 This project implements a Python function, <code>find_critical_events</code>, designed to identify "critical" events from a series of traffic data entries. An event is considered critical if it appears in two or more intersections on multiple days.
 
-## LIVE Deploy In React.ts And Flask
+## LIVE Deploy In React.ts And Flask (May take a minute or less to load)
+
+<img src="https://www.svgrepo.com/show/316501/arrow-down-small.svg" width='260px' height='260px'/>
 
 https://server-api-edmt.onrender.com/
 
-## Swagger Docs (Server Documentation)
+## Swagger Docs (Server Documentation) (May take a minute or less to load)
+
+<img src="https://www.svgrepo.com/show/316501/arrow-down-small.svg" width='260px' height='260px'/>
 
 https://server-api-edmt.onrender.com/api/docs
 
