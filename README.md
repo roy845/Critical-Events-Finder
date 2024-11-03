@@ -302,7 +302,7 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-19.png)
 
-<b> Products Pagination </b>
+<b> Critical Events Pagination </b>
 
 ![alt text](image-20.png)
 
