@@ -7,11 +7,13 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import {
+  AllowedFieldType,
   CriticalEventsResponse,
   CriticalEventsState,
   Day,
   DayEvent,
   DaysList,
+  SortOrder,
 } from "../../types/types";
 import { getCriticalEvents } from "../../services/api";
 import { RootState } from "../../app/store";
@@ -23,6 +25,7 @@ const initialState: CriticalEventsState = {
   daysInput: "" as string,
   searchCriticalEvents: "" as string,
   isTyping: false as boolean,
+  sortOrder: null,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -60,6 +63,9 @@ const criticalEventsSlice = createSlice({
     setIsTyping: (state, action: PayloadAction<boolean>): void => {
       state.isTyping = action.payload;
     },
+    setSortOrder: (state, action: PayloadAction<SortOrder>) => {
+      state.sortOrder = action.payload;
+    },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
       if (isNaN(numberOfDays) || numberOfDays <= 0) {
@@ -95,7 +101,7 @@ const criticalEventsSlice = createSlice({
       action: PayloadAction<{
         dayId: string;
         eventIndex: number;
-        field: "intersection" | "event";
+        field: AllowedFieldType;
         value: string;
       }>
     ) => {
@@ -111,6 +117,7 @@ const criticalEventsSlice = createSlice({
       state.daysInput = "";
       state.searchCriticalEvents = "";
       state.isTyping = false;
+      state.sortOrder = null;
     },
   },
   extraReducers: (builder) => {
@@ -136,7 +143,8 @@ const criticalEventsSlice = createSlice({
 export const selectFilteredCriticalEvents = createSelector(
   (state: RootState) => state.criticalEvents.criticalEvents,
   (state: RootState) => state.criticalEvents.searchCriticalEvents,
-  (criticalEvents, searchCriticalEvents) => {
+  (state: RootState) => state.criticalEvents.sortOrder,
+  (criticalEvents, searchCriticalEvents, sortOrder) => {
     let filteredCriticalEvents: string[] = [...criticalEvents];
     if (searchCriticalEvents.trim()) {
       filteredCriticalEvents = filteredCriticalEvents.filter(
@@ -146,6 +154,13 @@ export const selectFilteredCriticalEvents = createSelector(
             .includes(searchCriticalEvents.toLowerCase())
       );
     }
+
+    if (sortOrder === "asc") {
+      filteredCriticalEvents.sort((a, b) => a.localeCompare(b));
+    } else if (sortOrder === "desc") {
+      filteredCriticalEvents.sort((a, b) => b.localeCompare(a));
+    }
+
     return filteredCriticalEvents;
   }
 );
@@ -162,6 +177,7 @@ export const {
   setSearchCriticalEvents,
   resetForm,
   setIsTyping,
+  setSortOrder,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;

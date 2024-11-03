@@ -5,7 +5,7 @@ import {
   removeLastEvent,
   updateEventField,
 } from "../features/criticalEvents/criticalEventsSlice";
-import { Day } from "../types/types";
+import { AllowedFieldType, Day } from "../types/types";
 
 export const useDayCard = (day: Day) => {
   const dispatch = useAppDispatch();
@@ -24,7 +24,7 @@ export const useDayCard = (day: Day) => {
 
   const handleUpdateEventField = (
     eventIndex: number,
-    field: "intersection" | "event",
+    field: AllowedFieldType,
     value: string
   ) => {
     dispatch(

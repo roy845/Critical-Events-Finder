@@ -290,6 +290,18 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-16.png)
 
+<b> Sort Critical results </b>
+
+![alt text](image-17.png)
+
+<b> Sort Critical results ascending </b>
+
+![alt text](image-18.png)
+
+<b> Sort Critical results descending </b>
+
+![alt text](image-19.png)
+
 <b> Invalid days number input </b>
 
 ![alt text](image-9.png)

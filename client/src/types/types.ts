@@ -16,6 +16,10 @@ export interface CriticalEventsResponse {
   critical_events: string[];
 }
 
+export type SortOrder = "asc" | "desc" | null;
+
+export type AllowedFieldType = "intersection" | "event";
+
 export interface CriticalEventsState {
   daysList: DaysList;
   criticalEvents: string[];
@@ -23,4 +27,5 @@ export interface CriticalEventsState {
   daysInput: string;
   searchCriticalEvents: string;
   isTyping: boolean;
+  sortOrder: SortOrder;
 }

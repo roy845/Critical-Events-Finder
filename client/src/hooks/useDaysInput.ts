@@ -1,4 +1,3 @@
-// useDaysInput.ts
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   setDaysInput,
