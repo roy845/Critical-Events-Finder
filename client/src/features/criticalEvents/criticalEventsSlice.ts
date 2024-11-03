@@ -17,6 +17,7 @@ import {
 } from "../../types/types";
 import { getCriticalEvents } from "../../services/api";
 import { RootState } from "../../app/store";
+import { ITEMS_PER_PAGE } from "../../constants/paginationConstants";
 
 const initialState: CriticalEventsState = {
   daysList: { days_list: [] as Day[] },
@@ -26,6 +27,8 @@ const initialState: CriticalEventsState = {
   searchCriticalEvents: "" as string,
   isTyping: false as boolean,
   sortOrder: null,
+  currentPage: 1,
+  itemsPerPage: ITEMS_PER_PAGE,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -65,6 +68,12 @@ const criticalEventsSlice = createSlice({
     },
     setSortOrder: (state, action: PayloadAction<SortOrder>) => {
       state.sortOrder = action.payload;
+    },
+    setCurrentPage: (state, action: PayloadAction<number>): void => {
+      state.currentPage = action.payload;
+    },
+    setItemsPerPage: (state, action: PayloadAction<number>) => {
+      state.itemsPerPage = action.payload;
     },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
@@ -164,6 +173,22 @@ export const selectFilteredCriticalEvents = createSelector(
     return filteredCriticalEvents;
   }
 );
+export const selectPaginatedCriticalEvents = createSelector(
+  selectFilteredCriticalEvents,
+  (state: RootState) => state.criticalEvents.currentPage,
+  (state: RootState) => state.criticalEvents.itemsPerPage,
+  (filteredProducts, currentPage, itemsPerPage) => {
+    const startIndex: number = (currentPage - 1) * itemsPerPage;
+    const endIndex: number = startIndex + itemsPerPage;
+    return filteredProducts.slice(startIndex, endIndex);
+  }
+);
+export const selectTotalPages = createSelector(
+  selectFilteredCriticalEvents,
+  (state: RootState) => state.criticalEvents.itemsPerPage,
+  (filteredProducts, itemsPerPage) =>
+    Math.ceil(filteredProducts.length / itemsPerPage)
+);
 
 export const {
   setDaysInput,
@@ -178,6 +203,8 @@ export const {
   resetForm,
   setIsTyping,
   setSortOrder,
+  setCurrentPage,
+  setItemsPerPage,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;

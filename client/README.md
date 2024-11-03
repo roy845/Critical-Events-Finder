@@ -302,6 +302,14 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-19.png)
 
+<b> Products Pagination </b>
+
+![alt text](image-20.png)
+
+<b>Choosing items per page</b>
+
+![alt text](image-21.png)
+
 <b> Invalid days number input </b>
 
 ![alt text](image-9.png)

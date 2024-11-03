@@ -1,12 +1,14 @@
 import { useAppSelector } from "../app/hooks";
-import { selectFilteredCriticalEvents } from "../features/criticalEvents/criticalEventsSlice";
+import { selectPaginatedCriticalEvents } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useCriticalEventsTable = () => {
   const { isTyping, searchCriticalEvents } = useAppSelector(
     (state) => state.criticalEvents
   );
 
-  const criticalEvents: string[] = useAppSelector(selectFilteredCriticalEvents);
+  const criticalEvents: string[] = useAppSelector(
+    selectPaginatedCriticalEvents
+  );
 
   const hasCriticalEvents: boolean = criticalEvents.length > 0;
 

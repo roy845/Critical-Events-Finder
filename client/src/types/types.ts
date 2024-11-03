@@ -28,4 +28,6 @@ export interface CriticalEventsState {
   searchCriticalEvents: string;
   isTyping: boolean;
   sortOrder: SortOrder;
+  currentPage: number;
+  itemsPerPage: number;
 }

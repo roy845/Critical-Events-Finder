@@ -6,6 +6,8 @@ import { CriticalEventTableHeader } from "./CriticalEventTableHeader";
 import SearchCriticalEvents from "./SearchCriticalEvents";
 import Spinner from "./Spinner";
 import SortCriticalEvents from "./SortCriticalEvents";
+import CriticalEventsPagination from "./CriticalEventsPagination";
+import ItemsPerPage from "./ItemsPerPage";
 
 const CriticalEventsTable = () => {
   const { criticalEvents, hasCriticalEvents, searchCriticalEvents, isTyping } =
@@ -18,6 +20,7 @@ const CriticalEventsTable = () => {
         <div className="flex gap-4">
           <SearchCriticalEvents />
           <SortCriticalEvents />
+          <ItemsPerPage />
         </div>
         <Spinner />
       </div>
@@ -31,6 +34,7 @@ const CriticalEventsTable = () => {
         <div className="flex gap-4">
           <SearchCriticalEvents />
           <SortCriticalEvents />
+          <ItemsPerPage />
         </div>
 
         <NoResultsFound />
@@ -45,6 +49,7 @@ const CriticalEventsTable = () => {
           <div className="flex gap-4">
             <SearchCriticalEvents />
             <SortCriticalEvents />
+            <ItemsPerPage />
           </div>
           <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
             <CriticalEventsHeader title="Event Name" />
@@ -54,6 +59,7 @@ const CriticalEventsTable = () => {
               ))}
             </tbody>
           </table>
+          <CriticalEventsPagination />
         </>
       )}
     </div>

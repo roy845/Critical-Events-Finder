@@ -1,4 +1,3 @@
-import React from "react";
 import { MdOutlineSearchOff } from "react-icons/md";
 
 interface NoResultsFoundProps {

@@ -2,13 +2,13 @@ import { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   fetchCriticalEvents,
-  selectFilteredCriticalEvents,
+  selectPaginatedCriticalEvents,
 } from "../features/criticalEvents/criticalEventsSlice";
 import { DayEvent } from "../types/types";
 
 export const useCriticalEventsForm = () => {
   const dispatch = useAppDispatch();
-  const criticalEvents = useAppSelector(selectFilteredCriticalEvents);
+  const criticalEvents = useAppSelector(selectPaginatedCriticalEvents);
 
   const { daysList } = useAppSelector((state) => state.criticalEvents);
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import useDebounce from "./useDebounce";
 import {
+  setCurrentPage,
   setIsTyping,
   setSearchCriticalEvents,
 } from "../features/criticalEvents/criticalEventsSlice";
@@ -27,6 +28,7 @@ const useSearchCriticalEvents = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
     dispatch(setIsTyping(true));
+    dispatch(setCurrentPage(1));
   };
 
   useEffect(() => {
