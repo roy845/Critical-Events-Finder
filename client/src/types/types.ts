@@ -21,4 +21,6 @@ export interface CriticalEventsState {
   criticalEvents: string[];
   loading: boolean;
   daysInput: string;
+  searchCriticalEvents: string;
+  isTyping: boolean;
 }

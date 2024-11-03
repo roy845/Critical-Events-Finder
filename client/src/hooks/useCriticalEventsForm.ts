@@ -1,14 +1,16 @@
-// useCriticalEventsForm.ts
 import { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { fetchCriticalEvents } from "../features/criticalEvents/criticalEventsSlice";
+import {
+  fetchCriticalEvents,
+  selectFilteredCriticalEvents,
+} from "../features/criticalEvents/criticalEventsSlice";
 import { DayEvent } from "../types/types";
 
 export const useCriticalEventsForm = () => {
   const dispatch = useAppDispatch();
-  const { daysList, criticalEvents } = useAppSelector(
-    (state) => state.criticalEvents
-  );
+  const criticalEvents = useAppSelector(selectFilteredCriticalEvents);
+
+  const { daysList } = useAppSelector((state) => state.criticalEvents);
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);

@@ -282,6 +282,14 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-8.png)
 
+<b>Search Critical Events </b>
+
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+
+![alt text](image-16.png)
+
 <b> Invalid days number input </b>
 
 ![alt text](image-9.png)

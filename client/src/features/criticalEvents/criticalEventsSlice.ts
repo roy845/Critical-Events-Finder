@@ -1,4 +1,9 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import {
@@ -9,12 +14,15 @@ import {
   DaysList,
 } from "../../types/types";
 import { getCriticalEvents } from "../../services/api";
+import { RootState } from "../../app/store";
 
 const initialState: CriticalEventsState = {
   daysList: { days_list: [] as Day[] },
   criticalEvents: [] as string[],
   loading: false as boolean,
   daysInput: "" as string,
+  searchCriticalEvents: "" as string,
+  isTyping: false as boolean,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -45,6 +53,12 @@ const criticalEventsSlice = createSlice({
     },
     setDaysList: (state, action: PayloadAction<DaysList>) => {
       state.daysList = action.payload;
+    },
+    setSearchCriticalEvents: (state, action: PayloadAction<string>): void => {
+      state.searchCriticalEvents = action.payload;
+    },
+    setIsTyping: (state, action: PayloadAction<boolean>): void => {
+      state.isTyping = action.payload;
     },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
@@ -95,6 +109,8 @@ const criticalEventsSlice = createSlice({
       state.daysList = { days_list: [] };
       state.criticalEvents = [];
       state.daysInput = "";
+      state.searchCriticalEvents = "";
+      state.isTyping = false;
     },
   },
   extraReducers: (builder) => {
@@ -117,6 +133,23 @@ const criticalEventsSlice = createSlice({
   },
 });
 
+export const selectFilteredCriticalEvents = createSelector(
+  (state: RootState) => state.criticalEvents.criticalEvents,
+  (state: RootState) => state.criticalEvents.searchCriticalEvents,
+  (criticalEvents, searchCriticalEvents) => {
+    let filteredCriticalEvents: string[] = [...criticalEvents];
+    if (searchCriticalEvents.trim()) {
+      filteredCriticalEvents = filteredCriticalEvents.filter(
+        (criticalEvent: string) =>
+          criticalEvent
+            .toLowerCase()
+            .includes(searchCriticalEvents.toLowerCase())
+      );
+    }
+    return filteredCriticalEvents;
+  }
+);
+
 export const {
   setDaysInput,
   setDaysList,
@@ -126,7 +159,9 @@ export const {
   removeLastEvent,
   removeDay,
   updateEventField,
+  setSearchCriticalEvents,
   resetForm,
+  setIsTyping,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;
