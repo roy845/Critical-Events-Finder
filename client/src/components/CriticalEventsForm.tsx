@@ -15,7 +15,7 @@ const CriticalEventsForm = () => {
       <FormHeader title="Critical Events Form" />
       <DaysInput />
       <br />
-      <div className="text-center">OR</div>
+      <div className="text-center mb-2">OR</div>
       <FileUpload fileInputRef={fileInputRef} />
       <br />
       <form onSubmit={handleSubmit} className="space-y-6">

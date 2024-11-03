@@ -11,7 +11,7 @@ const SortCriticalEvents = () => {
         id="sortOrder"
         value={sortOrder || ""}
         onChange={handleSortChange}
-        className="mb-4 px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white"
+        className="mb-4 px-4 py-2 border hover:cursor-pointer border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white"
       >
         <option value="">None</option>
         <option value="asc">Ascending</option>

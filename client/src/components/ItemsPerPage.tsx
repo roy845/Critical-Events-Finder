@@ -12,7 +12,7 @@ const ItemsPerPage = () => {
         id="itemsPerPage"
         value={itemsPerPage}
         onChange={handleItemsPerPageChange}
-        className="mb-4 px-4 py-2 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white"
+        className="mb-4 px-4 py-2 border hover:cursor-pointer border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 bg-white"
       >
         {[1, 2, 3, 5, 10, 15, 20, 25, 30, 35].map((number) => (
           <option key={number} value={number}>
