@@ -137,8 +137,11 @@ const criticalEventsSlice = createSlice({
       .addCase(fetchCriticalEvents.fulfilled, (state, action) => {
         state.loading = false;
         state.criticalEvents = action.payload;
+
+        const numberOfCriticalEvents: number = action.payload.length;
+
         if (action.payload.length > 0) {
-          toast.success("Critical events found!");
+          toast.success(`${numberOfCriticalEvents} Critical events found!`);
         } else {
           toast.info("No critical events found.");
         }

@@ -4,14 +4,15 @@ import { RootState } from "../app/store";
 import { resetForm } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useFormButtons = (
-  fileInputRef: React.RefObject<HTMLInputElement>
+  fileInputRef: React.RefObject<HTMLInputElement>,
+  closeModal: () => void
 ) => {
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector(
     (state: RootState) => state.criticalEvents
   );
 
-  const handleReset = () => {
+  const handleReset = (): void => {
     dispatch(resetForm());
 
     if (fileInputRef.current) {
@@ -21,5 +22,10 @@ export const useFormButtons = (
     toast.info("Form has been reset.");
   };
 
-  return { loading, handleReset };
+  const confirmReset = (): void => {
+    handleReset();
+    closeModal();
+  };
+
+  return { loading, confirmReset };
 };

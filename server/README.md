@@ -282,6 +282,10 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-8.png)
 
+<b> Reset Form </b>
+
+![alt text](image-22.png)
+
 <b>Search Critical Events </b>
 
 ![alt text](image-14.png)
