@@ -9,7 +9,21 @@ export const useFileUpload = () => {
   const dispatch = useAppDispatch();
 
   const handleFileUpload = (file: File | undefined) => {
-    if (!file) return;
+    if (!file) {
+      toast.error("No file is selected.");
+      return;
+    }
+
+    const validExtensions: string[] = ["xlsx", "xls"];
+    const fileExtension: string | undefined = file.name
+      .split(".")
+      .pop()
+      ?.toLowerCase();
+
+    if (!fileExtension || !validExtensions.includes(fileExtension)) {
+      toast.error("Please upload a valid Excel file.");
+      return;
+    }
 
     const reader = new FileReader();
     reader.onload = (event) => {

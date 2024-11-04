@@ -272,6 +272,12 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-5.png)
 
+<b> Adding incorrect file format (Other than Excel) </b>
+
+![alt text](image-23.png)
+
+![alt text](image-24.png)
+
 <b> Adding data from Excel </b>
 
 ![alt text](image-6.png)
