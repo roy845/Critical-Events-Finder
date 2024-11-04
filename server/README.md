@@ -260,6 +260,10 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ## Screenshots
 
+<b> Info Dialog </b>
+
+![alt text](image-25.png)
+
 <b> Landing Page </b>
 
 ![alt text](image-3.png)

@@ -1,4 +1,3 @@
-// useFileUpload.ts
 import { useAppDispatch } from "../app/hooks";
 import { setDaysList } from "../features/criticalEvents/criticalEventsSlice";
 import { toast } from "react-toastify";

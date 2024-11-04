@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import criticalEventsReducer from "../features/criticalEvents/criticalEventsSlice";
+import modalReducer from "../features/modalSlice";
 
 export const store = configureStore({
   reducer: {
     criticalEvents: criticalEventsReducer,
+    modal: modalReducer,
   },
 });
 
