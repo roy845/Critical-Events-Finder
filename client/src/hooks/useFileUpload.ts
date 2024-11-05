@@ -34,9 +34,8 @@ export const useFileUpload = () => {
         header: 1,
       }) as string[][];
 
-      const importedDaysList: Day[] = json
-        .slice(1)
-        .reduce((days: Day[], row: string[]) => {
+      const importedDaysList: Day[] = json.reduce(
+        (days: Day[], row: string[]) => {
           const [dayIndex, intersection, event] = row;
           if (!dayIndex || !intersection || !event) return days;
 
@@ -52,7 +51,9 @@ export const useFileUpload = () => {
             });
           }
           return days;
-        }, []);
+        },
+        []
+      );
 
       dispatch(setDaysList({ days_list: importedDaysList }));
       toast.success("Data imported successfully from Excel!");
