@@ -40,14 +40,28 @@ class CriticalEventsResource(Resource):
         This endpoint takes a list of days, with each day containing a list of events and intersections.
         It returns a list of events that are considered critical (appear in multiple intersections over multiple days).
         """
-        data = request.json['days_list']
+        try:
+            data = request.json['days_list']
+            
+            # Transform the input to the required format
+            days_list = [[(item['intersection'], item['event']) for item in day] for day in data]
+            
+            # Use the CriticalEventsService to find critical events
+            critical_events, status_code, message = CriticalEventsService.find_critical_events(days_list)
+            
+            if status_code == HTTPStatus.NOT_FOUND:
+                raise NotFound(description=message)
+            
+            return {'critical_events': critical_events, 'status_code': status_code, "message": message}
         
-        # Transform the input to the required format
-        days_list = [[(item['intersection'], item['event']) for item in day] for day in data]
+        except KeyError:
+            # Handle missing 'days_list' key in request data
+            critical_events_api.abort(HTTPStatus.BAD_REQUEST, "Invalid data: 'days_list' key is missing.")
         
-        # Use the CriticalEventsService to find critical events
-        critical_events,status_code,message = CriticalEventsService.find_critical_events(days_list)
-        if status_code == HTTPStatus.NOT_FOUND:
-            raise NotFound(description=message)
+        except NotFound as e:
+            # Handle NotFound exception and return the error description
+            critical_events_api.abort(HTTPStatus.NOT_FOUND, str(e))
         
-        return {'critical_events': critical_events,'status_code':status_code,"message":message}
+        except Exception as e:
+            # Generic error handler for unexpected issues
+            critical_events_api.abort(HTTPStatus.INTERNAL_SERVER_ERROR, f"An unexpected error occurred: {str(e)}")
