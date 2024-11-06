@@ -1,10 +1,18 @@
+import { useDarkMode } from "../hooks/useDarKMode";
+
 interface FormHeaderProps {
   title: string;
 }
 
 const FormHeader = ({ title }: FormHeaderProps) => {
+  const { isDarkMode } = useDarkMode();
+
   return (
-    <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+    <h1
+      className={`text-2xl font-semibold text-center mb-6 ${
+        isDarkMode ? "text-gray-300" : "text-gray-800"
+      }`}
+    >
       {title}
     </h1>
   );

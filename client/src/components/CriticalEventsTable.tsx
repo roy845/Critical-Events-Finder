@@ -8,10 +8,12 @@ import Spinner from "./Spinner";
 import SortCriticalEvents from "./SortCriticalEvents";
 import CriticalEventsPagination from "./CriticalEventsPagination";
 import ItemsPerPage from "./ItemsPerPage";
+import { useDarkMode } from "../hooks/useDarKMode";
 
 const CriticalEventsTable = () => {
   const { criticalEvents, hasCriticalEvents, searchCriticalEvents, isTyping } =
     useCriticalEventsTable();
+  const { isDarkMode } = useDarkMode();
 
   if (isTyping) {
     return (
@@ -51,10 +53,17 @@ const CriticalEventsTable = () => {
             <SortCriticalEvents />
             <ItemsPerPage />
           </div>
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+
+          <table
+            className={`min-w-full border rounded-lg shadow-md ${
+              isDarkMode
+                ? "bg-gray-800 border-gray-700 text-gray-300"
+                : "bg-white border-gray-200 text-gray-900"
+            }`}
+          >
             <CriticalEventsHeader title="Event Name" />
             <tbody>
-              {criticalEvents.map((event: string, _) => (
+              {criticalEvents.map((event: string) => (
                 <CriticalEventRow key={event} event={event} />
               ))}
             </tbody>

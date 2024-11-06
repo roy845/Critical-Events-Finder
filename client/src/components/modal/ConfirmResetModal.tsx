@@ -1,3 +1,5 @@
+import { useDarkMode } from "../../hooks/useDarKMode";
+
 interface ConfirmResetModalProps {
   isOpen: boolean;
   confirmText: string;
@@ -15,11 +17,17 @@ const ConfirmResetModal = ({
   onConfirm,
   onTextChange,
 }: ConfirmResetModalProps) => {
+  const { isDarkMode } = useDarkMode();
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-6 w-80">
+      <div
+        className={`p-6 w-80 rounded-lg ${
+          isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-900"
+        }`}
+      >
         <h2 className="text-lg font-semibold mb-4">Confirm Reset</h2>
         <p className="mb-4">
           To confirm, type <strong>Reset Form</strong> below:
@@ -29,12 +37,20 @@ const ConfirmResetModal = ({
           value={confirmText}
           onChange={(e) => onTextChange(e.target.value)}
           placeholder="Type Reset Form"
-          className="w-full px-3 py-2 mb-4 border rounded-md"
+          className={`w-full px-3 py-2 mb-4 border rounded-md ${
+            isDarkMode
+              ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
+              : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
+          }`}
         />
         <div className="flex justify-between">
           <button
             onClick={onClose}
-            className="px-4 py-2 font-semibold text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+            className={`px-4 py-2 font-semibold rounded-md ${
+              isDarkMode
+                ? "bg-gray-600 text-gray-200 hover:bg-gray-500"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
           >
             Cancel
           </button>

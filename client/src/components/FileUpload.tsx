@@ -1,5 +1,6 @@
 import { FaUpload } from "react-icons/fa";
 import { useFileUpload } from "../hooks/useFileUpload";
+import { useDarkMode } from "../hooks/useDarKMode";
 
 interface FileUploadProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
@@ -7,18 +8,32 @@ interface FileUploadProps {
 
 const FileUpload = ({ fileInputRef }: FileUploadProps) => {
   const { onFileChange } = useFileUpload();
+  const { isDarkMode } = useDarkMode();
 
   return (
     <div>
-      <label className="block text-gray-700 font-medium mb-2 text-center">
+      <label
+        className={`block font-medium mb-2 text-center ${
+          isDarkMode ? "text-gray-300" : "text-gray-700"
+        }`}
+      >
         Import from Excel
       </label>
       <div
         className="flex justify-center items-center space-x-2 cursor-pointer"
         onClick={() => fileInputRef.current?.click()}
       >
-        <FaUpload className="text-blue-700" size={24} />
-        <span className="text-blue-700 font-semibold">Upload Excel</span>
+        <FaUpload
+          className={isDarkMode ? "text-blue-400" : "text-blue-700"}
+          size={24}
+        />
+        <span
+          className={`font-semibold ${
+            isDarkMode ? "text-blue-400" : "text-blue-700"
+          }`}
+        >
+          Upload Excel
+        </span>
       </div>
       <input
         type="file"

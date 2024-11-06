@@ -264,6 +264,10 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-25.png)
 
+<b> Dark Mode ON </b>
+
+![alt text](image-26.png)
+
 <b> Landing Page </b>
 
 ![alt text](image-3.png)

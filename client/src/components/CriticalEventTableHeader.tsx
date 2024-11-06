@@ -1,3 +1,5 @@
+import { useDarkMode } from "../hooks/useDarKMode";
+
 interface CriticalEventTableHeaderProps {
   title: string;
 }
@@ -5,5 +7,15 @@ interface CriticalEventTableHeaderProps {
 export const CriticalEventTableHeader = ({
   title,
 }: CriticalEventTableHeaderProps) => {
-  return <h2 className="text-xl font-medium text-gray-800 mb-4">{title}</h2>;
+  const { isDarkMode } = useDarkMode();
+
+  return (
+    <h2
+      className={`text-xl font-medium mb-4 ${
+        isDarkMode ? "text-gray-300" : "text-gray-800"
+      }`}
+    >
+      {title}
+    </h2>
+  );
 };

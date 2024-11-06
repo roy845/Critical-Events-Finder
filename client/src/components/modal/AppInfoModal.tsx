@@ -4,16 +4,22 @@ import {
   selectModal,
   toggleDoNotShowAgain,
 } from "../../features/modalSlice";
+import { useDarkMode } from "../../hooks/useDarKMode";
 
 const AppInfoModal = () => {
   const dispatch = useAppDispatch();
   const { isOpen, doNotShowAgain } = useAppSelector(selectModal);
+  const { isDarkMode } = useDarkMode();
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg w-3/4 max-w-lg p-6 shadow-lg">
+      <div
+        className={`rounded-lg w-3/4 max-w-lg p-6 shadow-lg ${
+          isDarkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"
+        }`}
+      >
         <h2 className="text-center text-2xl font-bold mb-4">
           About Critical Events Finder
         </h2>
@@ -46,18 +52,28 @@ const AppInfoModal = () => {
             id="doNotShowAgain"
             checked={doNotShowAgain}
             onChange={() => dispatch(toggleDoNotShowAgain())}
-            className="h-5 w-5 border-2 border-gray-300 rounded-md cursor-pointer checked:bg-blue-600 checked:border-transparent transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className={`h-5 w-5 border-2 rounded-md cursor-pointer transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+              isDarkMode
+                ? "bg-gray-700 text-gray-300 border-gray-600 focus:ring-blue-400"
+                : "bg-white text-gray-700 border-gray-300 focus:ring-blue-500"
+            }`}
           />
           <label
             htmlFor="doNotShowAgain"
-            className="ml-2 text-gray-700 cursor-pointer select-none"
+            className={`ml-2 cursor-pointer select-none ${
+              isDarkMode ? "text-gray-400" : "text-gray-700"
+            }`}
           >
             Do not show this again
           </label>
         </div>
         <button
           onClick={() => dispatch(closeModal())}
-          className="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className={`mt-6 px-4 py-2 rounded transition ${
+            isDarkMode
+              ? "bg-blue-500 text-white hover:bg-blue-600"
+              : "bg-blue-600 text-white hover:bg-blue-700"
+          }`}
         >
           Close
         </button>
