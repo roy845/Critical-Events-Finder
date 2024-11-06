@@ -19,7 +19,7 @@ const SortCriticalEvents = () => {
         id="sortOrder"
         value={sortOrder || ""}
         onChange={handleSortChange}
-        className={`mb-4 px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring-2 ${
+        className={`mb-4 px-4 py-2 border rounded-lg shadow-md cursor-pointer focus:outline-none focus:ring-2 ${
           isDarkMode
             ? "bg-gray-800 text-gray-300 border-gray-600 focus:ring-blue-400"
             : "bg-white text-gray-700 border-gray-300 focus:ring-blue-500"

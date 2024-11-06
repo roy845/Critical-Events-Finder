@@ -3,9 +3,15 @@ import { setDaysList } from "../features/criticalEvents/criticalEventsSlice";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
 import { Day } from "../types/types";
+import { useState } from "react";
+import { useDarkMode } from "./useDarKMode";
 
 export const useFileUpload = () => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+  const { isDarkMode } = useDarkMode();
+
+  const spinnerColor: string = isDarkMode ? "#ffffff" : "blue";
 
   const handleFileUpload = (file: File | undefined) => {
     if (!file) {
@@ -23,6 +29,8 @@ export const useFileUpload = () => {
       toast.error("Please upload a valid Excel file.");
       return;
     }
+
+    setLoading(true);
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -57,6 +65,7 @@ export const useFileUpload = () => {
 
       dispatch(setDaysList({ days_list: importedDaysList }));
       toast.success("Data imported successfully from Excel!");
+      setLoading(false);
     };
 
     reader.readAsArrayBuffer(file);
@@ -67,5 +76,5 @@ export const useFileUpload = () => {
     handleFileUpload(file);
   };
 
-  return { onFileChange };
+  return { onFileChange, loading, isDarkMode, spinnerColor };
 };

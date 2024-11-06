@@ -1,14 +1,13 @@
 import { FaUpload } from "react-icons/fa";
 import { useFileUpload } from "../hooks/useFileUpload";
-import { useDarkMode } from "../hooks/useDarKMode";
+import { TailSpin } from "react-loader-spinner";
 
 interface FileUploadProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
 }
 
 const FileUpload = ({ fileInputRef }: FileUploadProps) => {
-  const { onFileChange } = useFileUpload();
-  const { isDarkMode } = useDarkMode();
+  const { onFileChange, loading, isDarkMode, spinnerColor } = useFileUpload();
 
   return (
     <div>
@@ -23,17 +22,23 @@ const FileUpload = ({ fileInputRef }: FileUploadProps) => {
         className="flex justify-center items-center space-x-2 cursor-pointer"
         onClick={() => fileInputRef.current?.click()}
       >
-        <FaUpload
-          className={isDarkMode ? "text-blue-400" : "text-blue-700"}
-          size={24}
-        />
-        <span
-          className={`font-semibold ${
-            isDarkMode ? "text-blue-400" : "text-blue-700"
-          }`}
-        >
-          Upload Excel
-        </span>
+        {loading ? (
+          <TailSpin color={spinnerColor} height={50} width={50} />
+        ) : (
+          <>
+            <FaUpload
+              className={isDarkMode ? "text-blue-400" : "text-blue-700"}
+              size={24}
+            />
+            <span
+              className={`font-semibold ${
+                isDarkMode ? "text-blue-400" : "text-blue-700"
+              }`}
+            >
+              Upload Excel
+            </span>
+          </>
+        )}
       </div>
       <input
         type="file"
