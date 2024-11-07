@@ -328,6 +328,10 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-21.png)
 
+<b>Export table data to an Excel file</b>
+
+![alt text](image-27.png)
+
 <b> Invalid days number input </b>
 
 ![alt text](image-9.png)

@@ -181,16 +181,22 @@ export const selectPaginatedCriticalEvents = createSelector(
   (state: RootState) => state.criticalEvents.currentPage,
   (state: RootState) => state.criticalEvents.itemsPerPage,
   (filteredProducts, currentPage, itemsPerPage) => {
+    if (itemsPerPage === Infinity) {
+      return filteredProducts;
+    }
     const startIndex: number = (currentPage - 1) * itemsPerPage;
     const endIndex: number = startIndex + itemsPerPage;
     return filteredProducts.slice(startIndex, endIndex);
   }
 );
+
 export const selectTotalPages = createSelector(
   selectFilteredCriticalEvents,
   (state: RootState) => state.criticalEvents.itemsPerPage,
   (filteredProducts, itemsPerPage) =>
-    Math.ceil(filteredProducts.length / itemsPerPage)
+    itemsPerPage === Infinity
+      ? 1
+      : Math.ceil(filteredProducts.length / itemsPerPage)
 );
 
 export const {

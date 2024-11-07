@@ -9,10 +9,17 @@ import SortCriticalEvents from "./SortCriticalEvents";
 import CriticalEventsPagination from "./CriticalEventsPagination";
 import ItemsPerPage from "./ItemsPerPage";
 import { useDarkMode } from "../hooks/useDarKMode";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
+import Tooltip from "./Tooltip";
 
 const CriticalEventsTable = () => {
-  const { criticalEvents, hasCriticalEvents, searchCriticalEvents, isTyping } =
-    useCriticalEventsTable();
+  const {
+    criticalEvents,
+    hasCriticalEvents,
+    searchCriticalEvents,
+    isTyping,
+    exportToExcel,
+  } = useCriticalEventsTable();
   const { isDarkMode } = useDarkMode();
 
   if (isTyping) {
@@ -53,6 +60,14 @@ const CriticalEventsTable = () => {
             <SortCriticalEvents />
             <ItemsPerPage />
           </div>
+
+          <Tooltip message="Export the table data to an Excel file">
+            <PiMicrosoftExcelLogoFill
+              size={50}
+              onClick={exportToExcel}
+              className="cursor-pointer"
+            />
+          </Tooltip>
 
           <table
             className={`min-w-full border rounded-lg shadow-md ${

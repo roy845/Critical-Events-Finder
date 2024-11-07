@@ -8,7 +8,7 @@ const ItemsPerPage = () => {
   return (
     <div className="flex items-center space-x-3">
       <label
-        htmlFor="sortOrder"
+        htmlFor="itemsPerPage"
         className={`mb-4 font-medium ${
           isDarkMode ? "text-gray-300" : "text-gray-700"
         }`}
@@ -17,7 +17,7 @@ const ItemsPerPage = () => {
       </label>
       <select
         id="itemsPerPage"
-        value={itemsPerPage}
+        value={itemsPerPage === Infinity ? "all" : itemsPerPage}
         onChange={handleItemsPerPageChange}
         className={`mb-4 px-4 py-2 border rounded-lg cursor-pointer shadow-md focus:outline-none focus:ring-2 ${
           isDarkMode
@@ -25,11 +25,13 @@ const ItemsPerPage = () => {
             : "bg-white text-gray-700 border-gray-300 focus:ring-blue-500"
         }`}
       >
-        {[1, 2, 3, 5, 10, 15, 20, 25, 30, 35].map((number) => (
-          <option key={number} value={number}>
-            {number}
-          </option>
-        ))}
+        {[1, 2, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, "all"].map(
+          (number) => (
+            <option key={number} value={number === "all" ? "all" : number}>
+              {number === "all" ? "All" : number}
+            </option>
+          )
+        )}
       </select>
     </div>
   );

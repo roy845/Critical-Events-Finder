@@ -3,10 +3,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import useCriticalEventsPagination from "../hooks/useCriticalEventsPagination";
 import { useDarkMode } from "../hooks/useDarKMode";
 
-const CriticalEventsPagination = (): JSX.Element => {
+const CriticalEventsPagination = (): JSX.Element | null => {
   const { currentPage, handlePageChange, totalPages } =
     useCriticalEventsPagination();
   const { isDarkMode } = useDarkMode();
+
+  if (totalPages === 1) {
+    return null;
+  }
 
   return (
     <div className="flex justify-between items-center mt-4 space-x-4">

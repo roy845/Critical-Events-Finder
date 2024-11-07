@@ -14,8 +14,11 @@ const useItemsPerPage = () => {
   const handleItemsPerPageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const newItemsPerPage = parseInt(event.target.value, 10);
-    dispatch(setItemsPerPage(newItemsPerPage));
+    const value =
+      event.target.value === "all"
+        ? Infinity
+        : parseInt(event.target.value, 10);
+    dispatch(setItemsPerPage(value));
     dispatch(setCurrentPage(1));
   };
 
