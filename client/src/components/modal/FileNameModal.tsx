@@ -3,6 +3,10 @@ import { FiEdit, FiCheck } from "react-icons/fi";
 import Tooltip from "../Tooltip";
 import useFileNameModal from "../../hooks/useFileNameModal";
 import { useDarkMode } from "../../hooks/useDarKMode";
+import { CiExport } from "react-icons/ci";
+import { MdCancel } from "react-icons/md";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
+import { IoIosClose, IoIosColorFill } from "react-icons/io";
 
 interface FileNameModalProps {
   onConfirm: (fileName: string) => void;
@@ -24,11 +28,23 @@ const FileNameModal: React.FC<FileNameModalProps> = ({
       }`}
     >
       <div
-        className={`p-6 rounded-lg shadow-lg w-full max-w-md ${
+        className={`relative p-6 rounded-lg shadow-lg w-full max-w-md ${
           isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-900"
         }`}
       >
-        <h1 className="text-2xl text-center font-bold mb-4">Export to Excel</h1>
+        <button
+          onClick={onCancel}
+          className="absolute -top-5 -right-5 text-red-500 hover:text-red-700 transition-colors"
+        >
+          <IoIosClose size={32} />
+        </button>
+
+        <h1 className="text-2xl text-center font-bold mb-4 flex justify-center gap-4">
+          Export to Excel{" "}
+          <span className="mt-1">
+            <PiMicrosoftExcelLogoFill className="cursor-pointer" />
+          </span>
+        </h1>
         <h2 className="text-xl font-semibold mb-4">Enter File Name</h2>
 
         <div className="flex items-center gap-2 mb-4">
@@ -44,7 +60,7 @@ const FileNameModal: React.FC<FileNameModalProps> = ({
                 : "bg-white border-gray-300 text-gray-900"
             } ${isEditing ? "" : "cursor-not-allowed"}`}
           />
-          {/* Autofill Button */}
+
           <button
             onClick={autofillFileName}
             className={`p-2 rounded transition-colors ${
@@ -53,7 +69,10 @@ const FileNameModal: React.FC<FileNameModalProps> = ({
                 : "bg-gray-300 text-gray-900 hover:bg-gray-400"
             }`}
           >
-            Autofill
+            <span className="flex justify-center gap-2">
+              Autofill
+              <IoIosColorFill className="mt-1" />
+            </span>
           </button>
           <Tooltip message={isEditing ? "Save file name" : "Edit file name"}>
             {isEditing ? (
@@ -83,7 +102,10 @@ const FileNameModal: React.FC<FileNameModalProps> = ({
                 : "bg-gray-300 text-gray-900 hover:bg-gray-400"
             }`}
           >
-            Cancel
+            <span className="flex justify-center gap-2">
+              Cancel
+              <MdCancel className="mt-1" />
+            </span>
           </button>
           <button
             onClick={() => onConfirm(fileName)}
@@ -96,7 +118,10 @@ const FileNameModal: React.FC<FileNameModalProps> = ({
                 : "bg-blue-500 text-white hover:bg-blue-600"
             }`}
           >
-            Export
+            <span className="flex justify-center gap-2">
+              Export
+              <CiExport className="mt-1" />
+            </span>
           </button>
         </div>
       </div>

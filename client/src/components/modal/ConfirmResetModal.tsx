@@ -1,4 +1,7 @@
+import { MdCancel } from "react-icons/md";
 import { useDarkMode } from "../../hooks/useDarKMode";
+import { GrPowerReset } from "react-icons/gr";
+import { IoIosClose } from "react-icons/io";
 
 interface ConfirmResetModalProps {
   isOpen: boolean;
@@ -24,11 +27,21 @@ const ConfirmResetModal = ({
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div
-        className={`p-6 w-80 rounded-lg ${
+        className={`relative p-6 w-80 rounded-lg ${
           isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-900"
         }`}
       >
-        <h2 className="text-lg font-semibold mb-4">Confirm Reset</h2>
+        {/* Close Icon */}
+        <button
+          onClick={onClose}
+          className="absolute -top-5 -right-5 text-red-500 hover:text-red-700 transition-colors"
+        >
+          <IoIosClose size={32} />
+        </button>
+
+        <h2 className="text-lg font-semibold mb-4 text-center">
+          Confirm Reset
+        </h2>
         <p className="mb-4">
           To confirm, type <strong>Reset Form</strong> below:
         </p>
@@ -52,7 +65,13 @@ const ConfirmResetModal = ({
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
-            Cancel
+            <span className="flex justify-center gap-4">
+              {" "}
+              Cancel
+              <span className="mt-1">
+                <MdCancel />
+              </span>
+            </span>
           </button>
           <button
             onClick={onConfirm}
@@ -63,7 +82,12 @@ const ConfirmResetModal = ({
                 : "bg-gray-400 cursor-not-allowed"
             }`}
           >
-            Confirm
+            <span className="flex justify-center gap-4">
+              Confirm
+              <span className="mt-1">
+                <GrPowerReset />
+              </span>
+            </span>
           </button>
         </div>
       </div>

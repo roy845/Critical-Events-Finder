@@ -1,5 +1,6 @@
 import { useDarkMode } from "../hooks/useDarKMode";
 import { useDaysInput } from "../hooks/useDaysInput";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const DaysInput = () => {
   const { daysInput, handleInputChange, handleAddDays } = useDaysInput();
@@ -15,6 +16,7 @@ const DaysInput = () => {
       >
         Number of Days
       </label>
+
       <input
         type="number"
         id="daysInput"
@@ -36,7 +38,13 @@ const DaysInput = () => {
             : "bg-green-500 hover:bg-green-600 text-white"
         }`}
       >
-        Add Days
+        <span className="flex justify-center gap-4">
+          {" "}
+          Add Days
+          <span className="mt-1">
+            <AiOutlinePlus />
+          </span>
+        </span>
       </button>
     </div>
   );

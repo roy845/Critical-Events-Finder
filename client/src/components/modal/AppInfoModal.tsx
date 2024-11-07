@@ -5,6 +5,7 @@ import {
   toggleDoNotShowAgain,
 } from "../../features/modalSlice";
 import { useDarkMode } from "../../hooks/useDarKMode";
+import { IoIosClose } from "react-icons/io";
 
 const AppInfoModal = () => {
   const dispatch = useAppDispatch();
@@ -16,10 +17,17 @@ const AppInfoModal = () => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
       <div
-        className={`rounded-lg w-3/4 max-w-lg p-6 shadow-lg ${
+        className={`relative rounded-lg w-3/4 max-w-lg p-6 shadow-lg ${
           isDarkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"
         }`}
       >
+        <button
+          onClick={() => dispatch(closeModal())}
+          className="absolute -top-5 -right-6 text-red-500 hover:text-red-700 transition-colors"
+        >
+          <IoIosClose size={32} />
+        </button>
+
         <h2 className="text-center text-2xl font-bold mb-4">
           About Critical Events Finder
         </h2>
@@ -75,7 +83,13 @@ const AppInfoModal = () => {
               : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
-          Close
+          <span className="flex justify-center gap-4">
+            {" "}
+            Close
+            <span className="mt-1.5">
+              <IoIosClose />
+            </span>
+          </span>
         </button>
       </div>
     </div>

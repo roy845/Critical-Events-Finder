@@ -1,6 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setActiveTab } from "../features/tabSlice";
 import { useDarkMode } from "../hooks/useDarKMode";
+import { CiViewTable } from "react-icons/ci";
+import { FaChartBar } from "react-icons/fa";
 
 const Tabs = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +21,13 @@ const Tabs = () => {
             : "text-gray-700"
         }`}
       >
-        Table
+        <span className="flex justify-center gap-4">
+          {" "}
+          Table
+          <span className="mt-1">
+            <CiViewTable />
+          </span>
+        </span>
       </div>
       <div
         onClick={() => dispatch(setActiveTab("graphs"))}
@@ -31,7 +39,13 @@ const Tabs = () => {
             : "text-gray-700"
         }`}
       >
-        Graphs
+        <span className="flex justify-center gap-4">
+          {" "}
+          Graphs
+          <span className="mt-1">
+            <FaChartBar />
+          </span>
+        </span>
       </div>
     </div>
   );

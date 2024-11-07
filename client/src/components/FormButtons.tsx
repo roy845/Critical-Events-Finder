@@ -3,6 +3,8 @@ import { TailSpin } from "react-loader-spinner";
 import { useConfirmResetModal } from "../hooks/useConfirmResetModal";
 import ConfirmResetModal from "./modal/ConfirmResetModal";
 import { useDarkMode } from "../hooks/useDarKMode";
+import { GrPowerReset } from "react-icons/gr";
+import { IoMdDownload } from "react-icons/io";
 
 interface FileUploadProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
@@ -44,7 +46,20 @@ const FormButtons = ({ fileInputRef }: FileUploadProps) => {
             />
           </div>
         )}
-        <span className={loading ? "opacity-0" : ""}>Get critical events</span>
+
+        <span
+          className={
+            loading
+              ? "opacity-0 flex justify-center gap-4"
+              : "flex justify-center gap-4"
+          }
+        >
+          {" "}
+          Get critical events
+          <span className="mt-1">
+            <IoMdDownload />
+          </span>
+        </span>
       </button>
       <button
         type="button"
@@ -55,7 +70,13 @@ const FormButtons = ({ fileInputRef }: FileUploadProps) => {
             : "bg-red-500 hover:bg-red-600 text-white"
         }`}
       >
-        Reset
+        <span className="flex justify-center gap-4">
+          {" "}
+          Reset
+          <span className="mt-1">
+            <GrPowerReset />
+          </span>
+        </span>
       </button>
 
       <ConfirmResetModal
