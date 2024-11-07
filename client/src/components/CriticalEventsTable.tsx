@@ -11,6 +11,7 @@ import ItemsPerPage from "./ItemsPerPage";
 import { useDarkMode } from "../hooks/useDarKMode";
 import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
 import Tooltip from "./Tooltip";
+import FileNameModal from "./modal/FileNameModal";
 
 const CriticalEventsTable = () => {
   const {
@@ -18,7 +19,10 @@ const CriticalEventsTable = () => {
     hasCriticalEvents,
     searchCriticalEvents,
     isTyping,
-    exportToExcel,
+    isModalOpen,
+    setIsModalOpen,
+    handleExportClick,
+    handleExportConfirm,
   } = useCriticalEventsTable();
   const { isDarkMode } = useDarkMode();
 
@@ -64,7 +68,7 @@ const CriticalEventsTable = () => {
           <Tooltip message="Export the table data to an Excel file">
             <PiMicrosoftExcelLogoFill
               size={50}
-              onClick={exportToExcel}
+              onClick={handleExportClick}
               className="cursor-pointer"
             />
           </Tooltip>
@@ -84,6 +88,13 @@ const CriticalEventsTable = () => {
             </tbody>
           </table>
           <CriticalEventsPagination />
+
+          {isModalOpen && (
+            <FileNameModal
+              onConfirm={handleExportConfirm}
+              onCancel={() => setIsModalOpen(false)}
+            />
+          )}
         </>
       )}
     </div>
