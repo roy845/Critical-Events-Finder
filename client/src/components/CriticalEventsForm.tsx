@@ -16,6 +16,10 @@ const CriticalEventsForm = () => {
   const { isDarkMode } = useDarkMode();
   const { activeTab } = useAppSelector((state) => state.tabs);
 
+  const { criticalEvents: allCriticalEvents } = useAppSelector(
+    (state) => state.criticalEvents
+  );
+
   const { searchCriticalEvents } = useAppSelector(
     (state) => state.criticalEvents
   );
@@ -51,7 +55,7 @@ const CriticalEventsForm = () => {
       {activeTab === "table" ? (
         <CriticalEventsTable />
       ) : (
-        criticalEvents.length > 0 && <Graphs />
+        allCriticalEvents.length > 0 && <Graphs />
       )}
     </div>
   );
