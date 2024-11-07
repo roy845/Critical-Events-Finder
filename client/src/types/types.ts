@@ -31,3 +31,7 @@ export interface CriticalEventsState {
   currentPage: number;
   itemsPerPage: number;
 }
+
+export interface TabsState {
+  activeTab: string;
+}

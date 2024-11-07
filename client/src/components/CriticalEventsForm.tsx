@@ -6,11 +6,19 @@ import FormButtons from "./FormButtons";
 import DaysList from "./DaysList";
 import { useCriticalEventsForm } from "../hooks/useCriticalEventsForm";
 import { useDarkMode } from "../hooks/useDarKMode";
+import Graphs from "./Graphs";
+import Tabs from "./Tabs";
+import { useAppSelector } from "../app/hooks";
 
 const CriticalEventsForm = () => {
   const { daysList, criticalEvents, fileInputRef, handleSubmit } =
     useCriticalEventsForm();
   const { isDarkMode } = useDarkMode();
+  const { activeTab } = useAppSelector((state) => state.tabs);
+
+  const { searchCriticalEvents } = useAppSelector(
+    (state) => state.criticalEvents
+  );
 
   return (
     <div
@@ -36,7 +44,15 @@ const CriticalEventsForm = () => {
           <FormButtons fileInputRef={fileInputRef} />
         )}
       </form>
-      <CriticalEventsTable />
+      {criticalEvents.length === 0 && searchCriticalEvents.trim() !== "" && (
+        <Tabs />
+      )}
+      {criticalEvents.length > 0 && <Tabs />}
+      {activeTab === "table" ? (
+        <CriticalEventsTable />
+      ) : (
+        criticalEvents.length > 0 && <Graphs />
+      )}
     </div>
   );
 };

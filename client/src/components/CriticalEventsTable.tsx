@@ -24,6 +24,7 @@ const CriticalEventsTable = () => {
     handleExportClick,
     handleExportConfirm,
   } = useCriticalEventsTable();
+
   const { isDarkMode } = useDarkMode();
 
   if (isTyping) {

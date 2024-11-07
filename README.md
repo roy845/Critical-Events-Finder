@@ -336,6 +336,10 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-28.png)
 
+<b> Graphs Section </b>
+
+![alt text](image-29.png)
+
 <b> Invalid days number input </b>
 
 ![alt text](image-9.png)
