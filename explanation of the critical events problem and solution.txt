@@ -1,0 +1,42 @@
+# input: array of days where each day represented as a list contains tuples of ("intersection","event")
+
+# intersection could be for example a server in the system or some component in the system.
+
+# event is what happened to that server or component in the system. for example: server is down/electricity is down, etc......
+
+# output: critical events list. critical event is considered when it occured on 2+ unique intersections per day over 2+ days. 
+# (I modeled it like this in the interview).
+
+# for example: input: array of days where each day represents as list
+# each list contains tuples of (intersection,event) as explained above. each tuple must be of length 2 and must contains non empty strings to represent 
+# the intersection and the event combination.
+days_list = [
+    [("ServerA","Server is down"),("ServerB","Server is down")]
+    [("ServerB","Server not responding"),("ServerC","Server is missing"),("ServerC","Issue with network connectivity"),("ServerC","Server is slow")]
+     [("ServerC","Server is down"),("ServerB","Server is down")]
+    ]
+
+# output: list of critical events. for example Server is down is critical here because it affects ServerA and ServerB on day1 and affects ServerC and ServerB on day3. that means it affects two or more intersection per day over two or more days.
+critical_events = ["Server is down"]
+
+# Solution:
+# We map each event to its set of intersections for each day using defaultdict(set):
+
+event_intersections = {
+    # "Server is down":{"ServerA","ServerB"}, for day 1
+    # --------------------------------------------------------
+    # "Server not responding":{"ServerB",}, for day 2
+    # "Server is missing":{"ServerC"}, for day 2
+    # "Issue with network connectivity":{"ServerC"}, for day 2
+    # "Server is slow":{"ServerC"} for day 2
+    # --------------------------------------------------------
+    # Server is down:{"ServerC","ServerB"} for day 3
+}
+
+# for each day we count that day for the event if it affects at least 2 intersections (2+ intersections) using defaultdict(int).
+event_day_count = {
+    "Server is down":2
+}
+
+# Server is down is considered critical according to the explanation above so we add it to the list of critical_events
+critical_events = ["Server is down"]
