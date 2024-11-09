@@ -19,6 +19,7 @@ https://server-api-edmt.onrender.com/api/docs
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Flow chart of the critical events problem](#flow-chart-of-the-critical-events-problem)
 - [Architecture Design](#architecture-design)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -37,6 +38,10 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 
 1. Occur in at least two intersections within a single day.
 2. Appear on multiple days, satisfying the intersection requirement each time.
+
+## Flow chart of the critical events problem
+
+![alt text](flowchart.png)
 
 ## Architecture Design
 
