@@ -19,7 +19,7 @@ https://server-api-edmt.onrender.com/api/docs
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-- [Flow chart of the critical events problem](#flow-chart-of-the-critical-events-problem)
+- [Flow chart of the critical events solution](#flow-chart-of-the-critical-events-solution)
 - [Flow chart of the input validation](#flow-chart-of-the-input-validation)
 - [Architecture Design](#architecture-design)
 - [Technologies Used](#technologies-used)
