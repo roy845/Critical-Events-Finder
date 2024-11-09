@@ -39,9 +39,13 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 1. Occur in at least two intersections within a single day.
 2. Appear on multiple days, satisfying the intersection requirement each time.
 
-## Flow chart of the critical events problem
+## Flow chart of the critical events solution
 
-![alt text](flowchart.png)
+![alt text](flowchart-of-the-solution.png)
+
+## Flow chart of the input validation
+
+![alt text](flowchart-of-the-validation.png)
 
 ## Architecture Design
 
