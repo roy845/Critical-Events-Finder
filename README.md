@@ -20,6 +20,7 @@ https://server-api-edmt.onrender.com/api/docs
 
 - [Project Overview](#project-overview)
 - [Flow chart of the critical events problem](#flow-chart-of-the-critical-events-problem)
+- [Flow chart of the input validation](#flow-chart-of-the-input-validation)
 - [Architecture Design](#architecture-design)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
