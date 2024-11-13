@@ -10,7 +10,9 @@ export const useCriticalEventsForm = () => {
   const dispatch = useAppDispatch();
   const criticalEvents = useAppSelector(selectPaginatedCriticalEvents);
 
-  const { daysList } = useAppSelector((state) => state.criticalEvents);
+  const { daysList, fileProperties } = useAppSelector(
+    (state) => state.criticalEvents
+  );
 
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
@@ -25,6 +27,7 @@ export const useCriticalEventsForm = () => {
 
   return {
     daysList,
+    fileProperties,
     criticalEvents,
     fileInputRef,
     handleSubmit,

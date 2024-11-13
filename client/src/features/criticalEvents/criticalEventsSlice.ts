@@ -13,6 +13,7 @@ import {
   Day,
   DayEvent,
   DaysList,
+  FileProperties,
   SortOrder,
 } from "../../types/types";
 import { getCriticalEvents } from "../../services/api";
@@ -29,6 +30,7 @@ const initialState: CriticalEventsState = {
   sortOrder: null,
   currentPage: 1,
   itemsPerPage: ITEMS_PER_PAGE,
+  fileProperties: null,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -54,6 +56,9 @@ const criticalEventsSlice = createSlice({
     setCriticalEvents: (state, action: PayloadAction<string[]>) => {
       state.criticalEvents = action.payload;
     },
+    resetCriticalEvents: (state) => {
+      state.criticalEvents = [];
+    },
     setDaysInput: (state, action: PayloadAction<string>) => {
       state.daysInput = action.payload;
     },
@@ -74,6 +79,9 @@ const criticalEventsSlice = createSlice({
     },
     setItemsPerPage: (state, action: PayloadAction<number>) => {
       state.itemsPerPage = action.payload;
+    },
+    setFileProperties: (state, action: PayloadAction<FileProperties>) => {
+      state.fileProperties = action.payload;
     },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
@@ -127,6 +135,7 @@ const criticalEventsSlice = createSlice({
       state.searchCriticalEvents = "";
       state.isTyping = false;
       state.sortOrder = null;
+      state.fileProperties = null;
     },
   },
   extraReducers: (builder) => {
@@ -205,6 +214,7 @@ export const {
   addDays,
   addEvent,
   setCriticalEvents,
+  resetCriticalEvents,
   removeLastEvent,
   removeDay,
   updateEventField,
@@ -214,6 +224,7 @@ export const {
   setSortOrder,
   setCurrentPage,
   setItemsPerPage,
+  setFileProperties,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;

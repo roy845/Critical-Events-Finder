@@ -9,10 +9,16 @@ import { useDarkMode } from "../hooks/useDarKMode";
 import Graphs from "./Graphs";
 import Tabs from "./Tabs";
 import { useAppSelector } from "../app/hooks";
+import Accordion from "./Accordion";
 
 const CriticalEventsForm = () => {
-  const { daysList, criticalEvents, fileInputRef, handleSubmit } =
-    useCriticalEventsForm();
+  const {
+    daysList,
+    criticalEvents,
+    fileProperties,
+    fileInputRef,
+    handleSubmit,
+  } = useCriticalEventsForm();
   const { isDarkMode } = useDarkMode();
   const { activeTab } = useAppSelector((state) => state.tabs);
 
@@ -42,6 +48,8 @@ const CriticalEventsForm = () => {
       </div>
       <FileUpload fileInputRef={fileInputRef} />
       <br />
+      {fileProperties && <Accordion file={fileProperties} />}
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <DaysList daysList={daysList.days_list} />
         {(daysList.days_list.length > 0 || criticalEvents.length > 0) && (

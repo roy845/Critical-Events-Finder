@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   setDaysInput,
   addDays,
+  resetCriticalEvents,
 } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useDaysInput = () => {
@@ -14,6 +15,7 @@ export const useDaysInput = () => {
 
   const handleAddDays = () => {
     dispatch(addDays());
+    dispatch(resetCriticalEvents());
   };
 
   return {

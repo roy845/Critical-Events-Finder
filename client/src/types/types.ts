@@ -30,7 +30,15 @@ export interface CriticalEventsState {
   sortOrder: SortOrder;
   currentPage: number;
   itemsPerPage: number;
+  fileProperties: FileProperties | null;
 }
+
+export type FileProperties = {
+  name: string;
+  size: number;
+  type: string;
+  lastModified: number;
+};
 
 export interface TabsState {
   activeTab: string;

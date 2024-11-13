@@ -1,17 +1,13 @@
-import CriticalEventsHeader from "./CriticalEventsHeader";
-import CriticalEventRow from "./CriticalEventRow";
 import { useCriticalEventsTable } from "../hooks/useCriticalEventsTable";
 import NoResultsFound from "./NoResultsFound";
 import { CriticalEventTableHeader } from "./CriticalEventTableHeader";
-import SearchCriticalEvents from "./SearchCriticalEvents";
 import Spinner from "./Spinner";
-import SortCriticalEvents from "./SortCriticalEvents";
 import CriticalEventsPagination from "./CriticalEventsPagination";
-import ItemsPerPage from "./ItemsPerPage";
 import { useDarkMode } from "../hooks/useDarKMode";
-import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
-import Tooltip from "./Tooltip";
 import FileNameModal from "./modal/FileNameModal";
+import ExportButton from "./ExportButton";
+import CriticalEventsTableContent from "./CriticalEventsTableContent";
+import TableHeaderControls from "./TableHeaderControls";
 
 const CriticalEventsTable = () => {
   const {
@@ -31,11 +27,8 @@ const CriticalEventsTable = () => {
     return (
       <div className="mt-4">
         <CriticalEventTableHeader title="Critical Events" />
-        <div className="flex gap-4">
-          <SearchCriticalEvents />
-          <SortCriticalEvents />
-          <ItemsPerPage />
-        </div>
+        <TableHeaderControls />
+
         <Spinner />
       </div>
     );
@@ -45,11 +38,7 @@ const CriticalEventsTable = () => {
     return (
       <div className="mt-4">
         <CriticalEventTableHeader title="Critical Events" />
-        <div className="flex gap-4">
-          <SearchCriticalEvents />
-          <SortCriticalEvents />
-          <ItemsPerPage />
-        </div>
+        <TableHeaderControls />
 
         <NoResultsFound />
       </div>
@@ -60,34 +49,14 @@ const CriticalEventsTable = () => {
       {hasCriticalEvents && (
         <>
           <CriticalEventTableHeader title="Critical Events" />
-          <div className="flex gap-4">
-            <SearchCriticalEvents />
-            <SortCriticalEvents />
-            <ItemsPerPage />
-          </div>
+          <TableHeaderControls />
 
-          <Tooltip message="Export the table data to an Excel file">
-            <PiMicrosoftExcelLogoFill
-              size={50}
-              onClick={handleExportClick}
-              className="cursor-pointer"
-            />
-          </Tooltip>
+          <ExportButton onClick={handleExportClick} />
 
-          <table
-            className={`min-w-full border rounded-lg shadow-md ${
-              isDarkMode
-                ? "bg-gray-800 border-gray-700 text-gray-300"
-                : "bg-white border-gray-200 text-gray-900"
-            }`}
-          >
-            <CriticalEventsHeader title="Event Name" />
-            <tbody>
-              {criticalEvents.map((event: string) => (
-                <CriticalEventRow key={event} event={event} />
-              ))}
-            </tbody>
-          </table>
+          <CriticalEventsTableContent
+            criticalEvents={criticalEvents}
+            isDarkMode={isDarkMode}
+          />
           <CriticalEventsPagination />
 
           {isModalOpen && (

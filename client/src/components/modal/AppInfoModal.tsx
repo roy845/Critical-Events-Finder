@@ -5,7 +5,8 @@ import {
   toggleDoNotShowAgain,
 } from "../../features/modalSlice";
 import { useDarkMode } from "../../hooks/useDarKMode";
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose, IoIosInformationCircle } from "react-icons/io";
+import CloseButton from "../CloseButton";
 
 const AppInfoModal = () => {
   const dispatch = useAppDispatch();
@@ -21,15 +22,11 @@ const AppInfoModal = () => {
           isDarkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"
         }`}
       >
-        <button
-          onClick={() => dispatch(closeModal())}
-          className="absolute -top-5 -right-6 text-red-500 hover:text-red-700 transition-colors"
-        >
-          <IoIosClose size={32} />
-        </button>
+        <CloseButton />
 
-        <h2 className="text-center text-2xl font-bold mb-4">
+        <h2 className="text-center text-2xl font-bold mb-4 flex items-center justify-center gap-2">
           About Critical Events Finder
+          <IoIosInformationCircle size={28} />
         </h2>
         <p className="mb-4">
           This app helps users identify "critical" events from traffic data
@@ -53,6 +50,8 @@ const AppInfoModal = () => {
             Utilize pagination controls to navigate through extensive event
             lists efficiently.
           </li>
+          <li>Export critical events to an Excel file.</li>
+          <li>View how much critical events are found in table / graph form</li>
         </ul>
         <div className="flex items-center mt-4">
           <input
@@ -84,7 +83,6 @@ const AppInfoModal = () => {
           }`}
         >
           <span className="flex justify-center gap-4">
-            {" "}
             Close
             <span className="mt-1.5">
               <IoIosClose />

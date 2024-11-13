@@ -1,7 +1,7 @@
 import { MdCancel } from "react-icons/md";
 import { useDarkMode } from "../../hooks/useDarKMode";
 import { GrPowerReset } from "react-icons/gr";
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose, IoIosWarning } from "react-icons/io";
 
 interface ConfirmResetModalProps {
   isOpen: boolean;
@@ -31,7 +31,6 @@ const ConfirmResetModal = ({
           isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-900"
         }`}
       >
-        {/* Close Icon */}
         <button
           onClick={onClose}
           className="absolute -top-5 -right-5 text-red-500 hover:text-red-700 transition-colors"
@@ -39,8 +38,9 @@ const ConfirmResetModal = ({
           <IoIosClose size={32} />
         </button>
 
-        <h2 className="text-lg font-semibold mb-4 text-center">
+        <h2 className="text-lg font-semibold mb-4 text-center flex items-center justify-center gap-2">
           Confirm Reset
+          <IoIosWarning size={24} className="text-yellow-500" />
         </h2>
         <p className="mb-4">
           To confirm, type <strong>Reset Form</strong> below:
@@ -66,7 +66,6 @@ const ConfirmResetModal = ({
             }`}
           >
             <span className="flex justify-center gap-4">
-              {" "}
               Cancel
               <span className="mt-1">
                 <MdCancel />

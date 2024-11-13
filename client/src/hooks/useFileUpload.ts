@@ -1,5 +1,9 @@
 import { useAppDispatch } from "../app/hooks";
-import { setDaysList } from "../features/criticalEvents/criticalEventsSlice";
+import {
+  resetCriticalEvents,
+  setDaysList,
+  setFileProperties,
+} from "../features/criticalEvents/criticalEventsSlice";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
 import { Day } from "../types/types";
@@ -64,8 +68,18 @@ export const useFileUpload = () => {
       );
 
       dispatch(setDaysList({ days_list: importedDaysList }));
+      dispatch(resetCriticalEvents());
       toast.success("Data imported successfully from Excel!");
       setLoading(false);
+      dispatch(
+        setFileProperties({
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          lastModified: file.lastModified,
+        })
+      );
+      toast.success(`Uploaded file: ${file.name}`);
     };
 
     reader.readAsArrayBuffer(file);

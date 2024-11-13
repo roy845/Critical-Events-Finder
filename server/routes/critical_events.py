@@ -1,8 +1,9 @@
 from flask import request
 from http import HTTPStatus
 from flask_restx import Namespace, Resource, fields
+from validations.validations import Validations
 from services.CriticalEventsService import CriticalEventsService
-from werkzeug.exceptions import NotFound
+from werkzeug.exceptions import NotFound,BadRequest
 
 critical_events_api = Namespace('critical-events', description='Critical events operations')
 
@@ -41,10 +42,17 @@ class CriticalEventsResource(Resource):
         It returns a list of events that are considered critical (appear in multiple intersections over multiple days).
         """
         try:
-            data = request.json['days_list']
+            data = request.json
+         
+            # Validate extra fields
+            error = Validations.validate_no_extra_fields(data, {'days_list'})
+
+            if error:
+                raise BadRequest(description=error)
+                
             
             # Transform the input to the required format
-            days_list = [[(item['intersection'], item['event']) for item in day] for day in data]
+            days_list = [[(item['intersection'], item['event']) for item in day] for day in data['days_list']]
             
             # Use the CriticalEventsService to find critical events
             critical_events, status_code, message = CriticalEventsService.find_critical_events(days_list)
@@ -53,6 +61,10 @@ class CriticalEventsResource(Resource):
                 raise NotFound(description=message)
             
             return {'critical_events': critical_events, 'status_code': status_code, "message": message}
+
+        except BadRequest as e:
+            # Handle BadRequest exception and return the error description
+            critical_events_api.abort(HTTPStatus.BAD_REQUEST, error)
         
         except KeyError:
             # Handle missing 'days_list' key in request data

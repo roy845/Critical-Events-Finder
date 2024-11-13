@@ -35,3 +35,12 @@ class Validations:
 
         # If all checks pass, return True
         return True
+    
+    @staticmethod
+    def validate_no_extra_fields(data, allowed_keys):
+        # Calculate the set of keys in data that are not in allowed_keys
+        extra_keys = set(data.keys()) - allowed_keys
+        # Check if there are any unexpected keys
+        if extra_keys:
+            # Return a message listing the unexpected fields
+            return f"Unexpected fields in data: {', '.join(extra_keys)}"
