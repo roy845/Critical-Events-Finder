@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../app/hooks";
 import {
   resetCriticalEvents,
+  setDaysInput,
   setDaysList,
   setFileProperties,
 } from "../features/criticalEvents/criticalEventsSlice";
@@ -79,6 +80,7 @@ export const useFileUpload = () => {
           lastModified: file.lastModified,
         })
       );
+      dispatch(setDaysInput(""));
       toast.success(`Uploaded file: ${file.name}`);
     };
 

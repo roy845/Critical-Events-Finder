@@ -19,6 +19,9 @@ import {
 import { getCriticalEvents } from "../../services/api";
 import { RootState } from "../../app/store";
 import { ITEMS_PER_PAGE } from "../../constants/paginationConstants";
+import { getRandomItem, getRandomNumber } from "../../utils/utils";
+import { sampleIntersections } from "../../constants/intersections";
+import { sampleEvents } from "../../constants/events";
 
 const initialState: CriticalEventsState = {
   daysList: { days_list: [] as Day[] },
@@ -83,6 +86,9 @@ const criticalEventsSlice = createSlice({
     setFileProperties: (state, action: PayloadAction<FileProperties>) => {
       state.fileProperties = action.payload;
     },
+    setFilePropertiesNull: (state) => {
+      state.fileProperties = null;
+    },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
       if (isNaN(numberOfDays) || numberOfDays <= 0) {
@@ -93,6 +99,25 @@ const criticalEventsSlice = createSlice({
         id: uuidv4(),
         events: [],
       }));
+    },
+    generateRandomDaysList: (state) => {
+      state.daysInput = getRandomNumber(100).toString();
+      const numberOfDays = parseInt(state.daysInput, 10);
+
+      if (isNaN(numberOfDays) || numberOfDays <= 0) {
+        toast.error("Please enter a valid positive number of days.");
+        return;
+      }
+
+      state.daysList.days_list = Array.from({ length: numberOfDays }, () => ({
+        id: uuidv4(),
+        events: Array.from({ length: getRandomNumber(10) }, () => ({
+          intersection: getRandomItem(sampleIntersections),
+          event: getRandomItem(sampleEvents),
+        })),
+      }));
+
+      toast.success(`Generated ${numberOfDays} days with random events.`);
     },
     addEvent: (state, action: PayloadAction<string>) => {
       const dayId = action.payload;
@@ -225,6 +250,8 @@ export const {
   setCurrentPage,
   setItemsPerPage,
   setFileProperties,
+  setFilePropertiesNull,
+  generateRandomDaysList,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;

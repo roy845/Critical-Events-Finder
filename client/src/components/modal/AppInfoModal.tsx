@@ -37,7 +37,8 @@ const AppInfoModal = () => {
         <ul className="list-disc list-inside mb-4">
           <li>
             Upload an Excel file containing traffic data (use the example file
-            provided) OR enter the data manually.
+            provided) <strong>OR</strong> enter the data manually{" "}
+            <strong>OR</strong> generate random list of days with events.
           </li>
           <li>
             View identified critical events directly on the app's dashboard.

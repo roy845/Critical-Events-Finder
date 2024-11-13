@@ -3,6 +3,7 @@ import {
   setDaysInput,
   addDays,
   resetCriticalEvents,
+  setFilePropertiesNull,
 } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useDaysInput = () => {
@@ -16,6 +17,7 @@ export const useDaysInput = () => {
   const handleAddDays = () => {
     dispatch(addDays());
     dispatch(resetCriticalEvents());
+    dispatch(setFilePropertiesNull());
   };
 
   return {

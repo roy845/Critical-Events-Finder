@@ -302,6 +302,11 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](image-7.png)
 
+<b> Generating Random Number Of Days With Random Number of Intersections / Events
+
+![alt text](image-30.png)
+![alt text](image-31.png)
+
 <b> Generating results:(Critical Events) </b>
 
 ![alt text](image-8.png)

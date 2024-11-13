@@ -20,6 +20,8 @@ export type SortOrder = "asc" | "desc" | null;
 
 export type AllowedFieldType = "intersection" | "event";
 
+export type AllowedActiveTabString = "table" | "graphs";
+
 export interface CriticalEventsState {
   daysList: DaysList;
   criticalEvents: string[];
@@ -41,5 +43,5 @@ export type FileProperties = {
 };
 
 export interface TabsState {
-  activeTab: string;
+  activeTab: AllowedActiveTabString;
 }

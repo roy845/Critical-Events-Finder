@@ -10,6 +10,7 @@ import Graphs from "./Graphs";
 import Tabs from "./Tabs";
 import { useAppSelector } from "../app/hooks";
 import Accordion from "./Accordion";
+import RandomEventButton from "./RandomEventButton";
 
 const CriticalEventsForm = () => {
   const {
@@ -48,6 +49,24 @@ const CriticalEventsForm = () => {
       </div>
       <FileUpload fileInputRef={fileInputRef} />
       <br />
+      <div
+        className={`text-center mb-2 ${
+          isDarkMode ? "text-gray-400" : "text-gray-700"
+        }`}
+      >
+        OR
+      </div>
+      <label
+        className={`block font-medium mb-2 text-center ${
+          isDarkMode ? "text-gray-300" : "text-gray-700"
+        }`}
+      >
+        Generate Random Events
+      </label>
+      <div className={"text-center mb-2"}>
+        <RandomEventButton />
+      </div>
+
       {fileProperties && <Accordion file={fileProperties} />}
 
       <form onSubmit={handleSubmit} className="space-y-6">

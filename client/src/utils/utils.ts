@@ -16,3 +16,9 @@ export const formatFileSize = (size: number) => {
     return `${(size / 1024).toFixed(2)} KB`;
   }
 };
+
+export const getRandomItem = (arr: string[]) =>
+  arr[Math.floor(Math.random() * arr.length)];
+
+export const getRandomNumber = (max: number) =>
+  Math.floor(Math.random() * max) + 1;

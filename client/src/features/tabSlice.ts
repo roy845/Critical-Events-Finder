@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TabsState } from "../types/types";
+import { AllowedActiveTabString, TabsState } from "../types/types";
 
 const initialState: TabsState = {
   activeTab: "table",
@@ -9,7 +9,7 @@ const tabSlice = createSlice({
   name: "tabs",
   initialState,
   reducers: {
-    setActiveTab: (state, action: PayloadAction<string>) => {
+    setActiveTab: (state, action: PayloadAction<AllowedActiveTabString>) => {
       state.activeTab = action.payload;
     },
   },
