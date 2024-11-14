@@ -40,6 +40,7 @@ const AppInfoModal = () => {
             file provided) <strong>OR</strong> enter the data manually{" "}
             <strong>OR</strong> generate random list of days with events.
           </li>
+          <li>View analytics about intersections / events </li>
           <li>
             View identified critical events directly on the app's dashboard.
           </li>

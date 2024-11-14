@@ -12,6 +12,10 @@ import { useAppSelector } from "../app/hooks";
 import Accordion from "./Accordion";
 import RandomEventButton from "./RandomEventButton";
 import JSONFileUpload from "./JSONFileUpload";
+import EventsPerDayChart from "./EventsPerDayCharts";
+import EventTypesFrequencyChart from "./EventTypesFrequencyChart";
+import GraphsAccordion from "./GraphsAccordion";
+import IntersectionFrequencyChart from "./IntersectionFrequencyChart";
 
 const CriticalEventsForm = () => {
   const {
@@ -79,9 +83,16 @@ const CriticalEventsForm = () => {
       </div>
 
       {fileProperties && <Accordion file={fileProperties} />}
-
+      {daysList.days_list.length > 0 && (
+        <GraphsAccordion title="Intersections / Events Charts">
+          <EventsPerDayChart />
+          <EventTypesFrequencyChart />
+          <IntersectionFrequencyChart />
+        </GraphsAccordion>
+      )}
       <form onSubmit={handleSubmit} className="space-y-6">
         <DaysList daysList={daysList.days_list} />
+
         {(daysList.days_list.length > 0 || criticalEvents.length > 0) && (
           <FormButtons
             fileInputRef={fileInputRef}

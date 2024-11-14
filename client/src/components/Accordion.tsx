@@ -1,6 +1,7 @@
 import { FileProperties } from "../types/types";
 import useAccordion from "../hooks/useAccordion";
 import { formatFileSize } from "../utils/utils";
+import { IoMdSettings } from "react-icons/io";
 import { useDarkMode } from "../hooks/useDarKMode";
 
 interface AccordionProps {
@@ -12,18 +13,27 @@ const Accordion = ({ file }: AccordionProps) => {
   const { isOpen, toggleAccordion } = useAccordion();
 
   return (
-    <div className="w-full max-w-md mx-auto my-4">
+    <div
+      className={`w-full max-w-md mx-auto my-4 border rounded-lg mb-4 ${
+        isDarkMode ? "border-gray-700" : "border-gray-300"
+      }`}
+    >
       <div
         onClick={toggleAccordion}
-        className={`w-full p-4 font-semibold rounded-t-md cursor-pointer select-none ${
-          isDarkMode
-            ? "bg-gray-800 text-white border border-gray-600"
-            : "bg-blue-500 text-white"
+        className={`w-full text-left px-4 py-2 font-semibold focus:outline-none cursor-pointer flex items-center ${
+          isOpen
+            ? isDarkMode
+              ? "bg-gray-700 text-white"
+              : "bg-gray-300 text-gray-900"
+            : isDarkMode
+            ? "bg-gray-800 text-white"
+            : "bg-gray-200 text-gray-900"
         }`}
       >
-        File Properties
+        <IoMdSettings className="mr-2" />
+        <span>File Properties</span>
         <span
-          className={`float-right ${
+          className={`ml-auto transform ${
             isOpen ? "rotate-180" : ""
           } transition-transform`}
         >

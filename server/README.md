@@ -307,6 +307,16 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 ![alt text](image-32.png)
 ![alt text](image-33.png)
 
+<b>File Settings / Properties</b>
+
+![alt text](image-34.png)
+
+<b>Intersections / Events Charts</b>
+
+![alt text](image-35.png)
+![alt text](image-36.png)
+![alt text](image-37.png)
+
 <b> Generating Random Number Of Days With Random Number of Intersections / Events
 
 ![alt text](image-30.png)

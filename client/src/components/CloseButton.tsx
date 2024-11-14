@@ -7,7 +7,7 @@ const CloseButton = () => {
   return (
     <button
       onClick={() => dispatch(closeModal())}
-      className="absolute -top-5 -right-6 text-red-500 hover:text-red-700 transition-colors"
+      className="absolute top-4 right-4 text-red-500 hover:text-red-700 transition-colors"
     >
       <IoIosClose size={32} />
     </button>
