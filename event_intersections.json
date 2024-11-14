@@ -1,0 +1,37 @@
+[
+  {
+    "id": "day-1",
+    "events": [
+      {
+        "intersection": "A1",
+        "event": "Event 1"
+      },
+      {
+        "intersection": "B1",
+        "event": "Event 1"
+      }
+    ]
+  },
+  {
+    "id": "day-2",
+    "events": [
+      {
+        "intersection": "A2",
+        "event": "Event 1"
+      },
+      {
+        "intersection": "B2",
+        "event": "Event 1"
+      }
+    ]
+  },
+  {
+    "id": "day-3",
+    "events": [
+      {
+        "intersection": "A3",
+        "event": "Event 5"
+      }
+    ]
+  }
+]

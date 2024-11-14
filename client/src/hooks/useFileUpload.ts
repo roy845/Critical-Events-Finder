@@ -11,7 +11,9 @@ import { Day } from "../types/types";
 import { useState } from "react";
 import { useDarkMode } from "./useDarKMode";
 
-export const useFileUpload = () => {
+export const useFileUpload = (
+  fileInputRef: React.RefObject<HTMLInputElement>
+) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const { isDarkMode } = useDarkMode();
@@ -33,6 +35,10 @@ export const useFileUpload = () => {
     if (!fileExtension || !validExtensions.includes(fileExtension)) {
       toast.error("Please upload a valid Excel file.");
       return;
+    }
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
 
     setLoading(true);

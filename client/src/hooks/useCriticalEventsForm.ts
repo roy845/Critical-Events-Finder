@@ -17,6 +17,9 @@ export const useCriticalEventsForm = () => {
   const fileInputRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null);
 
+  const JSONfileInputRef: React.RefObject<HTMLInputElement> =
+    useRef<HTMLInputElement>(null);
+
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     const payload: {
@@ -30,6 +33,7 @@ export const useCriticalEventsForm = () => {
     fileProperties,
     criticalEvents,
     fileInputRef,
+    JSONfileInputRef,
     handleSubmit,
   };
 };

@@ -36,8 +36,8 @@ const AppInfoModal = () => {
         <h3 className="text-xl font-semibold mb-2">How to Use the App</h3>
         <ul className="list-disc list-inside mb-4">
           <li>
-            Upload an Excel file containing traffic data (use the example file
-            provided) <strong>OR</strong> enter the data manually{" "}
+            Upload an Excel\JSON file containing traffic data (use the example
+            file provided) <strong>OR</strong> enter the data manually{" "}
             <strong>OR</strong> generate random list of days with events.
           </li>
           <li>

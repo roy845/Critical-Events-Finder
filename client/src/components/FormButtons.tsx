@@ -8,9 +8,10 @@ import { IoMdDownload } from "react-icons/io";
 
 interface FileUploadProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
+  JSONFilInputRef: React.RefObject<HTMLInputElement>;
 }
 
-const FormButtons = ({ fileInputRef }: FileUploadProps) => {
+const FormButtons = ({ fileInputRef, JSONFilInputRef }: FileUploadProps) => {
   const {
     isModalOpen,
     confirmText,
@@ -20,7 +21,11 @@ const FormButtons = ({ fileInputRef }: FileUploadProps) => {
     handleConfirmTextChange,
   } = useConfirmResetModal();
 
-  const { loading, confirmReset } = useFormButtons(fileInputRef, closeModal);
+  const { loading, confirmReset } = useFormButtons(
+    fileInputRef,
+    JSONFilInputRef,
+    closeModal
+  );
   const { isDarkMode } = useDarkMode();
 
   return (

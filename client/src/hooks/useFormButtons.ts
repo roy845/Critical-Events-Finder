@@ -5,6 +5,7 @@ import { resetForm } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useFormButtons = (
   fileInputRef: React.RefObject<HTMLInputElement>,
+  JSONFilInputRef: React.RefObject<HTMLInputElement>,
   closeModal: () => void
 ) => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,10 @@ export const useFormButtons = (
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+
+    if (JSONFilInputRef.current) {
+      JSONFilInputRef.current.value = "";
     }
 
     toast.info("Form has been reset.");

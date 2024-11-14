@@ -11,6 +11,7 @@ import Tabs from "./Tabs";
 import { useAppSelector } from "../app/hooks";
 import Accordion from "./Accordion";
 import RandomEventButton from "./RandomEventButton";
+import JSONFileUpload from "./JSONFileUpload";
 
 const CriticalEventsForm = () => {
   const {
@@ -18,6 +19,7 @@ const CriticalEventsForm = () => {
     criticalEvents,
     fileProperties,
     fileInputRef,
+    JSONfileInputRef,
     handleSubmit,
   } = useCriticalEventsForm();
   const { isDarkMode } = useDarkMode();
@@ -56,6 +58,15 @@ const CriticalEventsForm = () => {
       >
         OR
       </div>
+      <JSONFileUpload fileInputRef={JSONfileInputRef} />
+      <br />
+      <div
+        className={`text-center mb-2 ${
+          isDarkMode ? "text-gray-400" : "text-gray-700"
+        }`}
+      >
+        OR
+      </div>
       <label
         className={`block font-medium mb-2 text-center ${
           isDarkMode ? "text-gray-300" : "text-gray-700"
@@ -72,7 +83,10 @@ const CriticalEventsForm = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <DaysList daysList={daysList.days_list} />
         {(daysList.days_list.length > 0 || criticalEvents.length > 0) && (
-          <FormButtons fileInputRef={fileInputRef} />
+          <FormButtons
+            fileInputRef={fileInputRef}
+            JSONFilInputRef={JSONfileInputRef}
+          />
         )}
       </form>
       {criticalEvents.length === 0 && searchCriticalEvents.trim() !== "" && (

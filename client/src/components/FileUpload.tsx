@@ -7,7 +7,8 @@ interface FileUploadProps {
 }
 
 const FileUpload = ({ fileInputRef }: FileUploadProps) => {
-  const { onFileChange, loading, isDarkMode, spinnerColor } = useFileUpload();
+  const { onFileChange, loading, isDarkMode, spinnerColor } =
+    useFileUpload(fileInputRef);
 
   return (
     <div>
