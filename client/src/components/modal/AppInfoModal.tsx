@@ -21,6 +21,7 @@ const AppInfoModal = () => {
         className={`relative rounded-lg w-3/4 max-w-lg p-6 shadow-lg ${
           isDarkMode ? "bg-gray-900 text-gray-300" : "bg-white text-gray-900"
         }`}
+        style={{ maxHeight: "90vh", overflowY: "auto" }}
       >
         <CloseButton />
 
