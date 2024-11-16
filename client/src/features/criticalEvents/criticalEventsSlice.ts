@@ -16,12 +16,12 @@ import {
   FileProperties,
   SortOrder,
 } from "../../types/types";
-import { getCriticalEvents } from "../../services/api";
 import { RootState } from "../../app/store";
 import { ITEMS_PER_PAGE } from "../../constants/paginationConstants";
 import { getRandomItem, getRandomNumber } from "../../utils/utils";
 import { sampleIntersections } from "../../constants/intersections";
 import { sampleEvents } from "../../constants/events";
+import { CriticalEventsService } from "../../services/criticalEventsService";
 
 const initialState: CriticalEventsState = {
   daysList: { days_list: [] as Day[] },
@@ -40,7 +40,8 @@ export const fetchCriticalEvents = createAsyncThunk(
   "criticalEvents/fetchCriticalEvents",
   async (daysList: DayEvent[][], { rejectWithValue }) => {
     try {
-      const result: CriticalEventsResponse = await getCriticalEvents(daysList);
+      const result: CriticalEventsResponse =
+        await CriticalEventsService.getCriticalEvents(daysList);
       return result.critical_events;
     } catch (error: any) {
       if (error.code === "ERR_NETWORK") {
