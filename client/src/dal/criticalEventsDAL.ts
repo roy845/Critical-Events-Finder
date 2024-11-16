@@ -1,24 +1,21 @@
-import { axiosInstance } from "../services/axios";
 import { CriticalEventsResponse, DayEvent } from "../types/types";
+import { HttpClient } from "../utils/httpClient";
 
+/**
+ * Data Access Layer for Critical Events.
+ */
 export class CriticalEventsDAL {
   /**
-   * Sends a POST request to the API to fetch critical events.
+   * Fetches critical events by sending a POST request to the API.
    * @param payload - The payload containing the days_list to send to the API.
-   * @returns A promise resolving to the raw API response.
+   * @returns A promise resolving to the critical events response.
    */
   static async fetchCriticalEvents(payload: {
     days_list: DayEvent[][];
   }): Promise<CriticalEventsResponse> {
-    try {
-      const response = await axiosInstance.post<CriticalEventsResponse>(
-        "/critical-events/",
-        payload
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Error in DAL while fetching critical events:", error);
-      throw error;
-    }
+    return HttpClient.post<CriticalEventsResponse, typeof payload>(
+      "/critical-events/",
+      payload
+    );
   }
 }
