@@ -29,10 +29,10 @@ export class Utils {
 
   /**
    * Gets a random item from an array.
-   * @param {string[]} arr - Array of strings.
-   * @returns {string} - Randomly selected item from the array.
+   * @param {T[]} arr - Array of items.
+   * @returns {T} - Randomly selected item from the array.
    */
-  static getRandomItem(arr: string[]): string {
+  static getRandomItem<T>(arr: T[]): T {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 

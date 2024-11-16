@@ -1,18 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  closeModal,
-  selectModal,
-  toggleDoNotShowAgain,
-} from "../../features/modalSlice";
-import { useDarkMode } from "../../hooks/useDarKMode";
+import { closeModal, toggleDoNotShowAgain } from "../../features/modalSlice";
 import { IoIosClose, IoIosInformationCircle } from "react-icons/io";
 import CloseButton from "../CloseButton";
+import useAppInfoModal from "../../hooks/useAppInfoModal";
 
 const AppInfoModal = () => {
-  const dispatch = useAppDispatch();
-  const { isOpen, doNotShowAgain } = useAppSelector(selectModal);
-  const { isDarkMode } = useDarkMode();
-
+  const { isOpen, doNotShowAgain, isDarkMode, dispatch } = useAppInfoModal();
   if (!isOpen) return null;
 
   return (

@@ -1,5 +1,5 @@
 import { axiosInstance } from "../services/axios";
-import { CriticalEventsResponse } from "../types/types";
+import { CriticalEventsResponse, DayEvent } from "../types/types";
 
 export class CriticalEventsDAL {
   /**
@@ -8,7 +8,7 @@ export class CriticalEventsDAL {
    * @returns A promise resolving to the raw API response.
    */
   static async fetchCriticalEvents(payload: {
-    days_list: unknown;
+    days_list: DayEvent[][];
   }): Promise<CriticalEventsResponse> {
     try {
       const response = await axiosInstance.post<CriticalEventsResponse>(
