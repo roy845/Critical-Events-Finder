@@ -1,24 +1,47 @@
-export const getRandomColor = () => {
-  const letters: string = "0123456789ABCDEF";
-  let color: string = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+export class Utils {
+  /**
+   * Generates a random color in hexadecimal format.
+   * @returns {string} - Random hexadecimal color string.
+   */
+  static getRandomColor(): string {
+    const letters: string = "0123456789ABCDEF";
+    let color: string = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
-  return color;
-};
 
-export const formatFileSize = (size: number) => {
-  if (size >= 1024 * 1024 * 1024) {
-    return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
-  } else if (size >= 1024 * 1024) {
-    return `${(size / (1024 * 1024)).toFixed(2)} MB`;
-  } else {
-    return `${(size / 1024).toFixed(2)} KB`;
+  /**
+   * Formats file size into human-readable format.
+   * @param {number} size - File size in bytes.
+   * @returns {string} - Formatted file size (e.g., "2.50 MB").
+   */
+  static formatFileSize(size: number): string {
+    if (size >= 1024 * 1024 * 1024) {
+      return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+    } else if (size >= 1024 * 1024) {
+      return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+    } else {
+      return `${(size / 1024).toFixed(2)} KB`;
+    }
   }
-};
 
-export const getRandomItem = (arr: string[]) =>
-  arr[Math.floor(Math.random() * arr.length)];
+  /**
+   * Gets a random item from an array.
+   * @param {string[]} arr - Array of strings.
+   * @returns {string} - Randomly selected item from the array.
+   */
+  static getRandomItem(arr: string[]): string {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
 
-export const getRandomNumber = (max: number) =>
-  Math.floor(Math.random() * max) + 1;
+  /**
+   * Generates a random number up to a maximum value.
+   * @param {number} max - Maximum number (inclusive).
+   * @returns {number} - Random number between 1 and max.
+   */
+  static getRandomNumber(max: number): number {
+    return Math.floor(Math.random() * max) + 1;
+  }
+}

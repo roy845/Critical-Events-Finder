@@ -1,6 +1,6 @@
 import { FileProperties } from "../types/types";
 import useAccordion from "../hooks/useAccordion";
-import { formatFileSize } from "../utils/utils";
+import { Utils } from "../utils/utils";
 import { IoMdSettings } from "react-icons/io";
 import { useDarkMode } from "../hooks/useDarKMode";
 
@@ -52,7 +52,7 @@ const Accordion = ({ file }: AccordionProps) => {
             <strong>Name:</strong> {file.name}
           </p>
           <p>
-            <strong>Size:</strong> {formatFileSize(file.size)}
+            <strong>Size:</strong> {Utils.formatFileSize(file.size)}
           </p>
           <p>
             <strong>Type:</strong> {file.type}

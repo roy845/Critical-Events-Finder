@@ -18,7 +18,7 @@ import {
 } from "../../types/types";
 import { RootState } from "../../app/store";
 import { ITEMS_PER_PAGE } from "../../constants/paginationConstants";
-import { getRandomItem, getRandomNumber } from "../../utils/utils";
+import { Utils } from "../../utils/utils";
 import { sampleIntersections } from "../../constants/intersections";
 import { sampleEvents } from "../../constants/events";
 import { CriticalEventsService } from "../../services/criticalEventsService";
@@ -102,7 +102,7 @@ const criticalEventsSlice = createSlice({
       }));
     },
     generateRandomDaysList: (state) => {
-      state.daysInput = getRandomNumber(100).toString();
+      state.daysInput = Utils.getRandomNumber(100).toString();
       const numberOfDays = parseInt(state.daysInput, 10);
 
       if (isNaN(numberOfDays) || numberOfDays <= 0) {
@@ -112,9 +112,9 @@ const criticalEventsSlice = createSlice({
 
       state.daysList.days_list = Array.from({ length: numberOfDays }, () => ({
         id: uuidv4(),
-        events: Array.from({ length: getRandomNumber(10) }, () => ({
-          intersection: getRandomItem(sampleIntersections),
-          event: getRandomItem(sampleEvents),
+        events: Array.from({ length: Utils.getRandomNumber(10) }, () => ({
+          intersection: Utils.getRandomItem(sampleIntersections),
+          event: Utils.getRandomItem(sampleEvents),
         })),
       }));
 

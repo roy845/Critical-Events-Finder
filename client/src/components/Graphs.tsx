@@ -25,7 +25,7 @@ const Graphs: React.FC = () => {
   return (
     <>
       <h2 className="text-center text-xl mb-4">Graphs Section</h2>
-      <Bar data={chartData} options={chartOptions} />
+      <Bar data={chartData} options={chartOptions} className="cursor-pointer" />
     </>
   );
 };

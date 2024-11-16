@@ -3,5 +3,5 @@ import useIntersectionFrequencyChart from "../hooks/useIntersectionFrequencyChar
 
 export default function IntersectionFrequencyChart() {
   const { data, options } = useIntersectionFrequencyChart();
-  return <Bar data={data} options={options} />;
+  return <Bar data={data} options={options} className="cursor-pointer" />;
 }

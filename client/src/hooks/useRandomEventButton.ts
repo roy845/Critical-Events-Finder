@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../app/hooks";
-import { getRandomColor } from "../utils/utils";
+import { Utils } from "../utils/utils";
 import {
   generateRandomDaysList,
   resetCriticalEvents,
@@ -9,7 +9,7 @@ import {
 
 const useRandomEventButton = () => {
   const [isSpinning, setIsSpinning] = useState(false);
-  const [buttonColor, setButtonColor] = useState(getRandomColor());
+  const [buttonColor, setButtonColor] = useState(Utils.getRandomColor());
 
   const dispatch = useAppDispatch();
 
@@ -21,7 +21,7 @@ const useRandomEventButton = () => {
 
   const handleClick = () => {
     generateRandomDaysListWithEvents();
-    setButtonColor(getRandomColor());
+    setButtonColor(Utils.getRandomColor());
     setIsSpinning(true);
 
     setTimeout(() => setIsSpinning(false), 1000);
