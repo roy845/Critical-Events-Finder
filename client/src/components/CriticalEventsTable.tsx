@@ -3,11 +3,11 @@ import NoResultsFound from "./NoResultsFound";
 import { CriticalEventTableHeader } from "./CriticalEventTableHeader";
 import Spinner from "./Spinner";
 import CriticalEventsPagination from "./CriticalEventsPagination";
-import { useDarkMode } from "../hooks/useDarKMode";
 import FileNameModal from "./modal/FileNameModal";
 import ExportButton from "./ExportButton";
-import CriticalEventsTableContent from "./CriticalEventsTableContent";
 import TableHeaderControls from "./TableHeaderControls";
+import DataTable from "./DataTable";
+import CriticalEventRow from "./CriticalEventRow";
 
 const CriticalEventsTable = () => {
   const {
@@ -20,8 +20,6 @@ const CriticalEventsTable = () => {
     handleExportClick,
     handleExportConfirm,
   } = useCriticalEventsTable();
-
-  const { isDarkMode } = useDarkMode();
 
   if (isTyping) {
     return (
@@ -53,10 +51,15 @@ const CriticalEventsTable = () => {
 
           <ExportButton onClick={handleExportClick} />
 
-          <CriticalEventsTableContent
-            criticalEvents={criticalEvents}
-            isDarkMode={isDarkMode}
+          <DataTable<string>
+            items={criticalEvents}
+            headers={["Event Name"]}
+            numOfHeaders={1}
+            renderRow={(event: string) => (
+              <CriticalEventRow key={event} event={event} />
+            )}
           />
+
           <CriticalEventsPagination />
 
           {isModalOpen && (

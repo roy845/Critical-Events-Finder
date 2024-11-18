@@ -19,7 +19,7 @@ const CriticalEventRow = ({ event }: CriticalEventRowProps) => {
       onMouseLeave={handleMouseLeave}
       style={{
         backgroundColor: hoverColor,
-        color: isDarkMode ? "#e5e7eb" : "#374151", // Adjust color for dark and light modes
+        color: isDarkMode ? "#e5e7eb" : "#374151",
       }}
     >
       <td
