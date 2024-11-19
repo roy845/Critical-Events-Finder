@@ -16,6 +16,14 @@ https://server-api-edmt.onrender.com/
 
 https://server-api-edmt.onrender.com/api/docs
 
+## Critical events finder desktop app
+
+This is the desktop app version. check it out in this link:
+
+<img src="https://www.svgrepo.com/show/316501/arrow-down-small.svg" width='260px' height='260px'/>
+
+https://github.com/roy845/Critical-Events-Finder-Desktop
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
