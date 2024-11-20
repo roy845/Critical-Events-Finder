@@ -50,15 +50,15 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 
 ## Flow chart of the critical events solution
 
-![alt text](flowchart-of-the-solution.png)
+![alt text](assets/flowchart-of-the-solution.png)
 
 ## Flow chart of the input validation
 
-![alt text](flowchart-of-the-validation.png)
+![alt text](assets/flowchart-of-the-validation.png)
 
 ## Architecture Design
 
-![alt text](image-13.png)
+![alt text](assets/image-13.png)
 
 ## Technologies Used
 
@@ -81,7 +81,7 @@ The <code>find_critical_events</code> function takes a list of days, where each 
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuiTDrB4jE3RaO72W0feOQP1XcZhjTrOBuYcqcXNSIQKeOx4iaA75cEZVN5BDrkQcLYK0&usqp=CAU" width="60px" height="60px">
 
 - **Python**
-  ![alt text](image-2.png)
+  ![alt text](assets/image-2.png)
 
 - **Flask**
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRubRv-E-PFnEuyYITdMYPqMXrBLOIKUTW8ug&s">
@@ -107,7 +107,7 @@ Clone the repository and ensure you have the latest Python installed on your mac
 
 To use the <code>find_critical_events</code> function, you can call it with a list of days. Each day should be a list of tuples, where each tuple contains an intersection and an event.
 
-![alt text](image.png)
+![alt text](assets/image.png)
 
 Go to the main.py file and run the command python main.py
 and the results will show up in the terminal of your IDE.
@@ -146,7 +146,7 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ## Examples
 
-![alt text](image-1.png)
+![alt text](assets/image-1.png)
 
 ## Data Structure Choice
 
@@ -280,113 +280,113 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 <b> Info Dialog </b>
 
-![alt text](image-25.png)
+![alt text](assets/image-25.png)
 
 <b> Dark Mode ON </b>
 
-![alt text](image-26.png)
+![alt text](assets/image-26.png)
 
 <b> Landing Page </b>
 
-![alt text](image-3.png)
+![alt text](assets/image-3.png)
 
 <b> Adding days </b>
 
-![alt text](image-4.png)
+![alt text](assets/image-4.png)
 
 <b> Adding (intersection,event)s </b>
 
-![alt text](image-5.png)
+![alt text](assets/image-5.png)
 
 <b> Adding incorrect file format (Other than Excel) </b>
 
-![alt text](image-23.png)
+![alt text](assets/image-23.png)
 
-![alt text](image-24.png)
+![alt text](assets/image-24.png)
 
 <b> Adding data from Excel </b>
 
-![alt text](image-6.png)
+![alt text](assets/image-6.png)
 
-![alt text](image-7.png)
+![alt text](assets/image-7.png)
 
 <b> Adding data from JSON</b>
 
-![alt text](image-32.png)
-![alt text](image-33.png)
+![alt text](assets/image-32.png)
+![alt text](assets/image-33.png)
 
 <b>File Settings / Properties</b>
 
-![alt text](image-34.png)
+![alt text](assets/image-34.png)
 
 <b>Intersections / Events Charts</b>
 
-![alt text](image-35.png)
-![alt text](image-36.png)
-![alt text](image-37.png)
+![alt text](assets/image-35.png)
+![alt text](assets/image-36.png)
+![alt text](assets/image-37.png)
 
 <b> Generating Random Number Of Days With Random Number of Intersections / Events
 
-![alt text](image-30.png)
-![alt text](image-31.png)
+![alt text](assets/image-30.png)
+![alt text](assets/image-31.png)
 
 <b> Generating results:(Critical Events) </b>
 
-![alt text](image-8.png)
+![alt text](assets/image-8.png)
 
 <b> Reset Form </b>
 
-![alt text](image-22.png)
+![alt text](assets/image-22.png)
 
 <b>Search Critical Events </b>
 
-![alt text](image-14.png)
+![alt text](assets/image-14.png)
 
-![alt text](image-15.png)
+![alt text](assets/image-15.png)
 
-![alt text](image-16.png)
+![alt text](assets/image-16.png)
 
 <b> Sort Critical results </b>
 
-![alt text](image-17.png)
+![alt text](assets/image-17.png)
 
 <b> Sort Critical results ascending </b>
 
-![alt text](image-18.png)
+![alt text](assets/image-18.png)
 
 <b> Sort Critical results descending </b>
 
-![alt text](image-19.png)
+![alt text](assets/image-19.png)
 
 <b> Critical Events Pagination </b>
 
-![alt text](image-20.png)
+![alt text](assets/image-20.png)
 
 <b>Choosing items per page</b>
 
-![alt text](image-21.png)
+![alt text](assets/image-21.png)
 
 <b>Export table data to an Excel file</b>
 
-![alt text](image-27.png)
+![alt text](assets/image-27.png)
 
 <b> Change Exported file name </b>
 
-![alt text](image-28.png)
+![alt text](assets/image-28.png)
 
 <b> Graphs Section </b>
 
-![alt text](image-29.png)
+![alt text](assets/image-29.png)
 
 <b> Invalid days number input </b>
 
-![alt text](image-9.png)
+![alt text](assets/image-9.png)
 
-![alt text](image-11.png)
+![alt text](assets/image-11.png)
 
 <b> Negative days number input </b>
 
-![alt text](image-10.png)
+![alt text](assets/image-10.png)
 
 ## Video demo
 
