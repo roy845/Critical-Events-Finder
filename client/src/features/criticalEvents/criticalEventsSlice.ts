@@ -34,6 +34,7 @@ const initialState: CriticalEventsState = {
   currentPage: 1,
   itemsPerPage: ITEMS_PER_PAGE,
   fileProperties: null,
+  isGlowing: true,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -90,6 +91,9 @@ const criticalEventsSlice = createSlice({
     setFilePropertiesNull: (state) => {
       state.fileProperties = null;
     },
+    setIsGlowing: (state, action: PayloadAction<boolean>) => {
+      state.isGlowing = action.payload;
+    },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
       if (isNaN(numberOfDays) || numberOfDays <= 0) {
@@ -118,6 +122,7 @@ const criticalEventsSlice = createSlice({
         })),
       }));
 
+      state.isGlowing = true;
       toast.success(`Generated ${numberOfDays} days with random events.`);
     },
     addEvent: (state, action: PayloadAction<string>) => {
@@ -237,6 +242,7 @@ export const selectTotalPages = createSelector(
 export const {
   setDaysInput,
   setDaysList,
+  setIsGlowing,
   addDays,
   addEvent,
   setCriticalEvents,

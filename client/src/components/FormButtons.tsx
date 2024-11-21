@@ -21,7 +21,7 @@ const FormButtons = ({ fileInputRef, JSONFilInputRef }: FileUploadProps) => {
     handleConfirmTextChange,
   } = useConfirmResetModal();
 
-  const { loading, confirmReset } = useFormButtons(
+  const { loading, isGlowing, confirmReset } = useFormButtons(
     fileInputRef,
     JSONFilInputRef,
     closeModal
@@ -36,6 +36,8 @@ const FormButtons = ({ fileInputRef, JSONFilInputRef }: FileUploadProps) => {
         className={`w-48 py-2 font-semibold rounded-md transition relative ${
           loading
             ? "bg-gray-400 cursor-not-allowed"
+            : isGlowing
+            ? "bg-blue-500 text-white animate-glow"
             : isDarkMode
             ? "bg-blue-600 hover:bg-blue-500 text-white"
             : "bg-blue-500 hover:bg-blue-600 text-white"

@@ -3,6 +3,7 @@ import {
   addEvent,
   removeDay,
   removeLastEvent,
+  setIsGlowing,
   updateEventField,
 } from "../features/criticalEvents/criticalEventsSlice";
 import { AllowedFieldType, Day } from "../types/types";
@@ -12,14 +13,17 @@ export const useDayCard = (day: Day) => {
 
   const handleAddEvent = () => {
     dispatch(addEvent(day.id));
+    dispatch(setIsGlowing(true));
   };
 
   const handleRemoveLastEvent = () => {
     dispatch(removeLastEvent(day.id));
+    dispatch(setIsGlowing(true));
   };
 
   const handleRemoveDay = () => {
     dispatch(removeDay(day.id));
+    dispatch(setIsGlowing(true));
   };
 
   const handleUpdateEventField = (

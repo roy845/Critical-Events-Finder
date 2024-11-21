@@ -14,20 +14,20 @@ function ScrollButton() {
         <>
           <button
             onClick={scrollToTop}
-            className={`font-bold p-3 rounded-full shadow-lg ${
+            className={`font-bold p-3 rounded-full shadow-lg transition duration-300 ${
               isDarkMode
-                ? "bg-gray-700 text-gray-300"
-                : "bg-gray-500 text-white"
+                ? "bg-gray-700 text-gray-300 hover:shadow-[0_0_10px_3px_rgba(255,255,255,0.7)]"
+                : "bg-gray-500 text-white hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.7)]"
             }`}
           >
             <FaArrowUp />
           </button>
           <button
             onClick={scrollToBottom}
-            className={`font-bold p-3 rounded-full shadow-lg ${
+            className={`font-bold p-3 rounded-full shadow-lg transition duration-300 ${
               isDarkMode
-                ? "bg-gray-700 text-gray-300"
-                : "bg-gray-500 text-white"
+                ? "bg-gray-700 text-gray-300 hover:shadow-[0_0_10px_3px_rgba(255,255,255,0.7)]"
+                : "bg-gray-500 text-white hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.7)]"
             }`}
           >
             <FaArrowDown />

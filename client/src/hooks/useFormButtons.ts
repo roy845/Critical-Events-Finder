@@ -9,7 +9,7 @@ export const useFormButtons = (
   closeModal: () => void
 ) => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector(
+  const { loading, isGlowing } = useAppSelector(
     (state: RootState) => state.criticalEvents
   );
 
@@ -32,5 +32,5 @@ export const useFormButtons = (
     closeModal();
   };
 
-  return { loading, confirmReset };
+  return { loading, isGlowing, confirmReset };
 };

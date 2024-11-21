@@ -9,7 +9,7 @@ const RandomEventButton = () => {
     <button
       onClick={handleClick}
       style={{ backgroundColor: buttonColor }}
-      className="text-white font-semibold py-2 px-4 rounded shadow hover:shadow-lg transition duration-300"
+      className="text-white font-semibold py-2 px-4 rounded shadow group hover:animate-glow transition duration-300"
     >
       <span className="flex justify-center gap-4">
         <Tooltip message="Generate Random Events">

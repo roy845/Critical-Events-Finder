@@ -4,6 +4,7 @@ import {
   addDays,
   resetCriticalEvents,
   setFilePropertiesNull,
+  setIsGlowing,
 } from "../features/criticalEvents/criticalEventsSlice";
 
 export const useDaysInput = () => {
@@ -18,6 +19,7 @@ export const useDaysInput = () => {
     dispatch(addDays());
     dispatch(resetCriticalEvents());
     dispatch(setFilePropertiesNull());
+    dispatch(setIsGlowing(true));
   };
 
   return {

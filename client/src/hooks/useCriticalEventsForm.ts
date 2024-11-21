@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   fetchCriticalEvents,
   selectPaginatedCriticalEvents,
+  setIsGlowing,
 } from "../features/criticalEvents/criticalEventsSlice";
 import { DayEvent } from "../types/types";
 
@@ -26,6 +27,7 @@ export const useCriticalEventsForm = () => {
       days_list: DayEvent[][];
     } = { days_list: daysList.days_list.map((day) => day.events) };
     await dispatch(fetchCriticalEvents(payload.days_list));
+    dispatch(setIsGlowing(false));
   };
 
   return {

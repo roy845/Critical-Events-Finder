@@ -7,6 +7,7 @@ import {
   setDaysInput,
   setDaysList,
   setFileProperties,
+  setIsGlowing,
 } from "../features/criticalEvents/criticalEventsSlice";
 import { useDarkMode } from "./useDarKMode";
 
@@ -69,6 +70,7 @@ const useJSONFileUpload = (
           })
         );
         dispatch(setDaysInput(""));
+        dispatch(setIsGlowing(true));
         toast.success(`Uploaded file: ${file.name}`);
       } catch (error) {
         toast.error("Failed to parse JSON file.");

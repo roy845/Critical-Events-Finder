@@ -17,22 +17,23 @@ function Header({ title }: HeaderProps) {
 
       <div
         onClick={toggleDarkMode}
-        className="w-14 h-8 flex items-center bg-gray-300 rounded-full p-1 cursor-pointer relative"
-        style={{
-          backgroundColor: isDarkMode ? "#4B5563" : "#D1D5DB",
-        }}
+        className={`w-14 h-8 flex items-center rounded-full p-1 cursor-pointer relative transition-all duration-300 ${
+          isDarkMode
+            ? "bg-gray-700 hover:shadow-[0_0_10px_3px_rgba(255,255,255,0.7)]"
+            : "bg-gray-300 hover:shadow-[0_0_10px_3px_rgba(0,0,0,0.5)]"
+        }`}
       >
         <span
-          className={`absolute left-1 text-yellow-400 ${
+          className={`absolute left-1 text-yellow-400 transition-opacity ${
             isDarkMode ? "opacity-100" : "opacity-100"
-          } transition-opacity`}
+          }`}
         >
           ☀️
         </span>
         <span
-          className={`absolute right-1 text-gray-200 ${
+          className={`absolute right-1 text-gray-200 transition-opacity ${
             isDarkMode ? "opacity-100" : "opacity-100"
-          } transition-opacity`}
+          }`}
         >
           🌙
         </span>

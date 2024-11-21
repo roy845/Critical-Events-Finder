@@ -33,6 +33,7 @@ export interface CriticalEventsState {
   currentPage: number;
   itemsPerPage: number;
   fileProperties: FileProperties | null;
+  isGlowing: boolean;
 }
 
 export type FileProperties = {
