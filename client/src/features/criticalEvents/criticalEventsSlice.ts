@@ -22,6 +22,7 @@ import { Utils } from "../../utils/utils";
 import { sampleIntersections } from "../../constants/intersections";
 import { sampleEvents } from "../../constants/events";
 import { CriticalEventsService } from "../../services/criticalEventsService";
+import { initializeTrie } from "../../utils/initTrie";
 
 const initialState: CriticalEventsState = {
   daysList: { days_list: [] as Day[] },
@@ -177,6 +178,7 @@ const criticalEventsSlice = createSlice({
       .addCase(fetchCriticalEvents.fulfilled, (state, action) => {
         state.loading = false;
         state.criticalEvents = action.payload;
+        initializeTrie(action.payload);
 
         const numberOfCriticalEvents: number = action.payload.length;
 

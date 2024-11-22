@@ -6,9 +6,12 @@ import {
   setIsTyping,
   setSearchCriticalEvents,
 } from "../features/criticalEvents/criticalEventsSlice";
+import { trie } from "../utils/initTrie";
 
 const useSearchCriticalEvents = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const searchCriticalEvents = useAppSelector(
     (state) => state.criticalEvents.searchCriticalEvents
@@ -16,6 +19,23 @@ const useSearchCriticalEvents = () => {
 
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>(searchCriticalEvents);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setSuggestions([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setSuggestions]);
 
   const debouncedDispatch: (...args: any[]) => void = useDebounce(
     (value: string) => {
@@ -29,6 +49,12 @@ const useSearchCriticalEvents = () => {
     setInputValue(e.target.value);
     dispatch(setIsTyping(true));
     dispatch(setCurrentPage(1));
+
+    if (e.target.value.trim()) {
+      setSuggestions(trie.search(e.target.value));
+    } else {
+      setSuggestions([]);
+    }
   };
 
   useEffect(() => {
@@ -41,7 +67,15 @@ const useSearchCriticalEvents = () => {
     }
   }, [inputValue]);
 
-  return { inputValue, handleChange, inputRef };
+  return {
+    inputValue,
+    handleChange,
+    inputRef,
+    containerRef,
+    suggestions,
+    setInputValue,
+    setSuggestions,
+  };
 };
 
 export default useSearchCriticalEvents;

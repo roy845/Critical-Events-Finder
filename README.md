@@ -356,6 +356,9 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 
 ![alt text](assets/image-16.png)
 
+<b>Autocomplete using Trie data structure</b>
+![alt text](assets/image-38.png)
+
 <b> Sort Critical results </b>
 
 ![alt text](assets/image-17.png)
