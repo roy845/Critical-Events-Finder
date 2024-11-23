@@ -1,4 +1,5 @@
 import { useDarkMode } from "../hooks/useDarKMode";
+import Clock from "./Clock";
 
 type HeaderProps = {
   title: string;
@@ -14,6 +15,7 @@ function Header({ title }: HeaderProps) {
       }`}
     >
       <h1 className="text-3xl font-bold">{title}</h1>
+      <Clock />
 
       <div
         onClick={toggleDarkMode}
