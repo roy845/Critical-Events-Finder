@@ -99,10 +99,10 @@ const CriticalEventsForm = () => {
         </GraphsAccordion>
       )}
       <form onSubmit={handleSubmit} className="space-y-6">
-        {paginatedDaysList.length > 0 && <ItemsPerPageDaysList />}
+        {daysList.days_list.length > 0 && <ItemsPerPageDaysList />}
         <DaysList daysList={paginatedDaysList} />
 
-        {paginatedDaysList.length > 0 && <DaysListPagination />}
+        {daysList.days_list.length > 0 && <DaysListPagination />}
 
         {(daysList.days_list.length > 0 || criticalEvents.length > 0) && (
           <>

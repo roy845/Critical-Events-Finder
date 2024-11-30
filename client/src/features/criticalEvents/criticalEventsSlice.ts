@@ -156,6 +156,12 @@ const criticalEventsSlice = createSlice({
       state.daysList.days_list = state.daysList.days_list.filter(
         (day) => day.id !== action.payload
       );
+      const totalPages: number = Math.ceil(
+        state.daysList.days_list.length / state.itemsPerPageDaysList
+      );
+      if (state.currentPageDaysList > totalPages) {
+        state.currentPageDaysList = totalPages > 0 ? totalPages : 1;
+      }
     },
     updateEventField: (
       state,
