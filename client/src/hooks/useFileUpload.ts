@@ -5,6 +5,7 @@ import {
   setDaysList,
   setFileProperties,
   setIsGlowing,
+  setRequestDuration,
 } from "../features/criticalEvents/criticalEventsSlice";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx";
@@ -89,6 +90,7 @@ export const useFileUpload = (
       );
       dispatch(setDaysInput(""));
       dispatch(setIsGlowing(true));
+      dispatch(setRequestDuration(0));
       toast.success(`Uploaded file: ${file.name}`);
     };
 

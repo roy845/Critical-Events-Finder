@@ -5,6 +5,7 @@ import {
   generateRandomDaysList,
   resetCriticalEvents,
   setFilePropertiesNull,
+  setRequestDuration,
 } from "../features/criticalEvents/criticalEventsSlice";
 
 const useRandomEventButton = () => {
@@ -17,6 +18,7 @@ const useRandomEventButton = () => {
     dispatch(resetCriticalEvents());
     dispatch(setFilePropertiesNull());
     dispatch(generateRandomDaysList());
+    dispatch(setRequestDuration(0));
   };
 
   const handleClick = () => {

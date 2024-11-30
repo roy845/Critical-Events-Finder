@@ -22,6 +22,8 @@ export type AllowedFieldType = "intersection" | "event";
 
 export type AllowedActiveTabString = "table" | "graphs";
 
+export type DurationUnit = "ms" | "s" | "none";
+
 export interface CriticalEventsState {
   daysList: DaysList;
   criticalEvents: string[];
@@ -32,8 +34,11 @@ export interface CriticalEventsState {
   sortOrder: SortOrder;
   currentPage: number;
   itemsPerPage: number;
+  currentPageDaysList: number;
+  itemsPerPageDaysList: number;
   fileProperties: FileProperties | null;
   isGlowing: boolean;
+  requestDuration: number;
 }
 
 export type FileProperties = {

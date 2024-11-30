@@ -34,8 +34,11 @@ const initialState: CriticalEventsState = {
   sortOrder: null,
   currentPage: 1,
   itemsPerPage: ITEMS_PER_PAGE,
+  currentPageDaysList: 1,
+  itemsPerPageDaysList: ITEMS_PER_PAGE,
   fileProperties: null,
   isGlowing: true,
+  requestDuration: 0,
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -83,8 +86,14 @@ const criticalEventsSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>): void => {
       state.currentPage = action.payload;
     },
+    setCurrentPageDaysList: (state, action: PayloadAction<number>): void => {
+      state.currentPageDaysList = action.payload;
+    },
     setItemsPerPage: (state, action: PayloadAction<number>) => {
       state.itemsPerPage = action.payload;
+    },
+    setItemsPerPageDaysList: (state, action: PayloadAction<number>) => {
+      state.itemsPerPageDaysList = action.payload;
     },
     setFileProperties: (state, action: PayloadAction<FileProperties>) => {
       state.fileProperties = action.payload;
@@ -94,6 +103,9 @@ const criticalEventsSlice = createSlice({
     },
     setIsGlowing: (state, action: PayloadAction<boolean>) => {
       state.isGlowing = action.payload;
+    },
+    setRequestDuration: (state, action: PayloadAction<number>) => {
+      state.requestDuration = action.payload;
     },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
@@ -168,6 +180,7 @@ const criticalEventsSlice = createSlice({
       state.isTyping = false;
       state.sortOrder = null;
       state.fileProperties = null;
+      state.requestDuration = 0;
     },
   },
   extraReducers: (builder) => {
@@ -218,6 +231,7 @@ export const selectFilteredCriticalEvents = createSelector(
     return filteredCriticalEvents;
   }
 );
+
 export const selectPaginatedCriticalEvents = createSelector(
   selectFilteredCriticalEvents,
   (state: RootState) => state.criticalEvents.currentPage,
@@ -241,10 +255,34 @@ export const selectTotalPages = createSelector(
       : Math.ceil(filteredProducts.length / itemsPerPage)
 );
 
+export const selectPaginatedDaysList = createSelector(
+  (state: RootState) => state.criticalEvents.daysList,
+  (state: RootState) => state.criticalEvents.currentPageDaysList,
+  (state: RootState) => state.criticalEvents.itemsPerPageDaysList,
+  (daysList, currentPage, itemsPerPage) => {
+    if (itemsPerPage === Infinity) {
+      return daysList.days_list;
+    }
+    const startIndex: number = (currentPage - 1) * itemsPerPage;
+    const endIndex: number = startIndex + itemsPerPage;
+    return daysList.days_list.slice(startIndex, endIndex);
+  }
+);
+
+export const selectDaysTotalPages = createSelector(
+  (state: RootState) => state.criticalEvents.daysList,
+  (state: RootState) => state.criticalEvents.itemsPerPageDaysList,
+  (daysList, itemsPerPage) =>
+    itemsPerPage === Infinity
+      ? 1
+      : Math.ceil(daysList.days_list.length / itemsPerPage)
+);
+
 export const {
   setDaysInput,
   setDaysList,
   setIsGlowing,
+  setRequestDuration,
   addDays,
   addEvent,
   setCriticalEvents,
@@ -257,7 +295,9 @@ export const {
   setIsTyping,
   setSortOrder,
   setCurrentPage,
+  setCurrentPageDaysList,
   setItemsPerPage,
+  setItemsPerPageDaysList,
   setFileProperties,
   setFilePropertiesNull,
   generateRandomDaysList,

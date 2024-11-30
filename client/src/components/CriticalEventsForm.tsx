@@ -16,14 +16,22 @@ import EventsPerDayChart from "./EventsPerDayCharts";
 import EventTypesFrequencyChart from "./EventTypesFrequencyChart";
 import GraphsAccordion from "./GraphsAccordion";
 import IntersectionFrequencyChart from "./IntersectionFrequencyChart";
+import DaysListPagination from "./DaysListPagination";
+import ItemsPerPageDaysList from "./ItemsPerPageDaysList";
+import DurationUnitSelect from "./DurationUnitSelect";
 
 const CriticalEventsForm = () => {
   const {
     daysList,
+    requestDuration,
+    displayedDuration,
+    paginatedDaysList,
     criticalEvents,
     fileProperties,
     fileInputRef,
     JSONfileInputRef,
+    durationUnit,
+    handleDurationUnitChange,
     handleSubmit,
   } = useCriticalEventsForm();
   const { isDarkMode } = useDarkMode();
@@ -91,13 +99,29 @@ const CriticalEventsForm = () => {
         </GraphsAccordion>
       )}
       <form onSubmit={handleSubmit} className="space-y-6">
-        <DaysList daysList={daysList.days_list} />
+        {paginatedDaysList.length > 0 && <ItemsPerPageDaysList />}
+        <DaysList daysList={paginatedDaysList} />
+
+        {paginatedDaysList.length > 0 && <DaysListPagination />}
 
         {(daysList.days_list.length > 0 || criticalEvents.length > 0) && (
-          <FormButtons
-            fileInputRef={fileInputRef}
-            JSONFilInputRef={JSONfileInputRef}
-          />
+          <>
+            <FormButtons
+              fileInputRef={fileInputRef}
+              JSONFilInputRef={JSONfileInputRef}
+            />
+            {requestDuration.toString() !== "0" && (
+              <DurationUnitSelect
+                durationUnit={durationUnit}
+                onChange={handleDurationUnitChange}
+                isDarkMode={isDarkMode}
+              />
+            )}
+
+            {durationUnit !== "none" && requestDuration.toString() !== "0" && (
+              <p className="mt-2">{`Request completed in ${displayedDuration}`}</p>
+            )}
+          </>
         )}
       </form>
       {criticalEvents.length === 0 && searchCriticalEvents.trim() !== "" && (
