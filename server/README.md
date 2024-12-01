@@ -322,6 +322,12 @@ once the environment is activated hit the command <b>pytest</b> in the terminal 
 ![alt text](assets/image-36.png)
 ![alt text](assets/image-37.png)
 
+<b> Swipeable Intersections / Events Charts </b>
+
+Use the arrows to swipe graphs or hold the mouse click and swipe to left/right.
+
+![alt text](assets/image-39.png)
+
 <b> Generating Random Number Of Days With Random Number of Intersections / Events
 
 ![alt text](assets/image-30.png)

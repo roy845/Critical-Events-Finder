@@ -14,6 +14,7 @@ export const useCriticalEventsForm = () => {
   const criticalEvents = useAppSelector(selectPaginatedCriticalEvents);
 
   const [durationUnit, setDurationUnit] = useState<DurationUnit>("ms");
+  const [activeSlide, setActiveSlide] = useState<number>(0);
 
   const { daysList, fileProperties, requestDuration } = useAppSelector(
     (state) => state.criticalEvents
@@ -55,6 +56,8 @@ export const useCriticalEventsForm = () => {
   };
 
   return {
+    activeSlide,
+    setActiveSlide,
     durationUnit,
     displayedDuration,
     handleDurationUnitChange,

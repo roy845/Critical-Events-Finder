@@ -12,16 +12,16 @@ import { useAppSelector } from "../app/hooks";
 import Accordion from "./Accordion";
 import RandomEventButton from "./RandomEventButton";
 import JSONFileUpload from "./JSONFileUpload";
-import EventsPerDayChart from "./EventsPerDayCharts";
-import EventTypesFrequencyChart from "./EventTypesFrequencyChart";
 import GraphsAccordion from "./GraphsAccordion";
-import IntersectionFrequencyChart from "./IntersectionFrequencyChart";
 import DaysListPagination from "./DaysListPagination";
 import ItemsPerPageDaysList from "./ItemsPerPageDaysList";
 import DurationUnitSelect from "./DurationUnitSelect";
+import GraphsCarousel from "./GraphsCarousel";
 
 const CriticalEventsForm = () => {
   const {
+    activeSlide,
+    setActiveSlide,
     daysList,
     requestDuration,
     displayedDuration,
@@ -52,6 +52,7 @@ const CriticalEventsForm = () => {
       }`}
     >
       <FormHeader title="Critical Events Form" />
+
       <DaysInput />
       <br />
       <div
@@ -93,9 +94,10 @@ const CriticalEventsForm = () => {
       {fileProperties && <Accordion file={fileProperties} />}
       {daysList.days_list.length > 0 && (
         <GraphsAccordion title="Intersections / Events Charts">
-          <EventsPerDayChart />
-          <EventTypesFrequencyChart />
-          <IntersectionFrequencyChart />
+          <GraphsCarousel
+            activeSlide={activeSlide}
+            setActiveSlide={setActiveSlide}
+          />
         </GraphsAccordion>
       )}
       <form onSubmit={handleSubmit} className="space-y-6">
