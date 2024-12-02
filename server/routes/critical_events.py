@@ -1,6 +1,7 @@
 from flask import request
 from http import HTTPStatus
 from flask_restx import Namespace, Resource, fields
+from handlers.error_handler import handle_error
 from validations.validations import Validations
 from services.CriticalEventsService import CriticalEventsService
 from werkzeug.exceptions import NotFound,BadRequest
@@ -34,6 +35,10 @@ critical_events_model = critical_events_api.model('CriticalEvents', {
 class CriticalEventsResource(Resource):
     @critical_events_api.expect(days_list_model, validate=True)
     @critical_events_api.marshal_with(critical_events_model)
+    @critical_events_api.response(HTTPStatus.BAD_REQUEST, 'Invalid data provided. Check for missing or extra fields.')
+    @critical_events_api.response(HTTPStatus.NOT_FOUND, 'No critical events found based on the provided input.')
+    @critical_events_api.response(HTTPStatus.INTERNAL_SERVER_ERROR, 'An unexpected error occurred on the server.')
+    @handle_error
     def post(self):
         """
         Identify critical events.
@@ -41,39 +46,18 @@ class CriticalEventsResource(Resource):
         This endpoint takes a list of days, with each day containing a list of events and intersections.
         It returns a list of events that are considered critical (appear in multiple intersections over multiple days).
         """
-        try:
-            data = request.json
+        data = request.json
          
-            # Validate extra fields
-            error = Validations.validate_no_extra_fields(data, {'days_list'})
-
-            if error:
-                raise BadRequest(description=error)
+        # Validate extra fields
+        Validations.validate_request_fields(data, {'days_list'})
                 
-            
-            # Transform the input to the required format
-            days_list = [[(item['intersection'], item['event']) for item in day] for day in data['days_list']]
-            
-            # Use the CriticalEventsService to find critical events
-            critical_events, status_code, message = CriticalEventsService.find_critical_events(days_list)
-            
-            if status_code == HTTPStatus.NOT_FOUND:
-                raise NotFound(description=message)
-            
-            return {'critical_events': critical_events, 'status_code': status_code, "message": message}
+        # Transform the input to the required format
+        days_list = CriticalEventsService.transform_input(data['days_list'])
 
-        except BadRequest as e:
-            # Handle BadRequest exception and return the error description
-            critical_events_api.abort(HTTPStatus.BAD_REQUEST, error)
-        
-        except KeyError:
-            # Handle missing 'days_list' key in request data
-            critical_events_api.abort(HTTPStatus.BAD_REQUEST, "Invalid data: 'days_list' key is missing.")
-        
-        except NotFound as e:
-            # Handle NotFound exception and return the error description
-            critical_events_api.abort(HTTPStatus.NOT_FOUND, str(e))
-        
-        except Exception as e:
-            # Generic error handler for unexpected issues
-            critical_events_api.abort(HTTPStatus.INTERNAL_SERVER_ERROR, f"An unexpected error occurred: {str(e)}")
+        # Use the CriticalEventsService to find critical events
+        critical_events, status_code, message = CriticalEventsService.find_critical_events(days_list)
+            
+        if status_code == HTTPStatus.NOT_FOUND:
+            raise NotFound(description=message)
+            
+        return {'critical_events': critical_events, 'status_code': status_code, "message": message}

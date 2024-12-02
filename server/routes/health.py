@@ -10,6 +10,7 @@ class Health(Resource):
     @health_api.doc(
         responses={
             HTTPStatus.OK: 'Server is healthy and running',
+            HTTPStatus.INTERNAL_SERVER_ERROR:'An unexpected error occurred on the server.'
         }
     )
     def get(self):
@@ -20,5 +21,5 @@ class Health(Resource):
         """
         return {
             "ok": True,
-            "date": datetime.now().isoformat()  # ISO format for better readability
+            "date": datetime.now().isoformat()
         }, HTTPStatus.OK

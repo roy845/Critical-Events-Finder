@@ -83,3 +83,8 @@ class CriticalEventsService:
 
         # Convert the critical events set to a list and return it
         return list(critical_events),HTTPStatus.OK,"Critical events are found"
+    
+    @staticmethod
+    def transform_input(days_list):
+        """Transform input data into the required format."""
+        return [[(item['intersection'], item['event']) for item in day] for day in days_list]

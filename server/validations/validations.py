@@ -1,4 +1,5 @@
 from typing import List, Tuple, Union
+from werkzeug.exceptions import BadRequest
 
 class Validations:
     
@@ -37,10 +38,8 @@ class Validations:
         return True
     
     @staticmethod
-    def validate_no_extra_fields(data, allowed_keys):
-        # Calculate the set of keys in data that are not in allowed_keys
-        extra_keys = set(data.keys()) - allowed_keys
-        # Check if there are any unexpected keys
-        if extra_keys:
-            # Return a message listing the unexpected fields
-            return f"Unexpected fields in data: {', '.join(extra_keys)}"
+    def validate_request_fields(data, allowed_fields):
+        """Check for unexpected fields in the request data."""
+        extra_fields = set(data.keys()) - allowed_fields
+        if extra_fields:
+            raise BadRequest(description=f"Unexpected fields: {', '.join(extra_fields)}")
