@@ -4,7 +4,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
-import "../styles/GraphsCarousel.css";
 import EventsPerDayChart from "./EventsPerDayCharts";
 import EventTypesFrequencyChart from "./EventTypesFrequencyChart";
 import IntersectionFrequencyChart from "./IntersectionFrequencyChart";
