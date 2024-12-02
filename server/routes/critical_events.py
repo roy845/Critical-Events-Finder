@@ -4,7 +4,7 @@ from flask_restx import Namespace, Resource, fields
 from handlers.error_handler import handle_error
 from validations.validations import Validations
 from services.CriticalEventsService import CriticalEventsService
-from werkzeug.exceptions import NotFound,BadRequest
+from werkzeug.exceptions import NotFound
 
 critical_events_api = Namespace('critical-events', description='Critical events operations')
 
