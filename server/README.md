@@ -31,6 +31,7 @@ https://github.com/roy845/Critical-Events-Finder-Desktop
 - [Flow chart of the input validation](#flow-chart-of-the-input-validation)
 - [Flow chart of the critical events solution (Dark)](#flow-chart-of-the-critical-events-solution-dark)
 - [Flow chart of the input validation (Dark)](#flow-chart-of-the-input-validation-dark)
+- [Use Case Diagram](#use-case-diagram)
 - [Architecture Design](#architecture-design)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -65,6 +66,10 @@ The <code>find_critical_events</code> function takes a list of days, where each 
 ## Flow chart of the input validation (Dark)
 
 ![alt text](assets/dark_mode_diagram_2.png)
+
+## Use Case Diagram
+
+![alt text](assets/critical_events_use_case_diagram.png)
 
 ## Architecture Design
 
