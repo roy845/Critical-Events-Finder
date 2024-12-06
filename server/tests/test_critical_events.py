@@ -41,7 +41,7 @@ def test_extra_field(client,base_url):
         "extra_info": "This field should not be here"
     })
     assert response.status_code == HTTPStatus.BAD_REQUEST
-    assert "Unexpected fields in data" in response.get_data(as_text=True)
+    assert "400 Bad Request: Unexpected fields" in response.get_data(as_text=True)
 
 
 def test_empty_days_list(client,base_url):
