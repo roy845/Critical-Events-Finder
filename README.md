@@ -6,8 +6,7 @@ This project implements a Python function, <code>find_critical_events</code>, de
 
 Use Extended_Event_Intersection_Data_Expanded.xlsx file in the repository files (its in the main repository on the first page) to upload it in the tool and check the results (critical events) or enter input by yourself in the app.
 
-* There is a cron job that periodically sends a ping request to the service every 10 minutes to keep it alive, preventing it from spinning down and causing delays when accessing the site.
-
+- There is a cron job that periodically sends a ping request to the service every 10 minutes to keep it alive, preventing it from spinning down and causing delays when accessing the site.
 
 <img src="https://www.svgrepo.com/show/316501/arrow-down-small.svg" width='260px' height='260px'/>
 
@@ -26,6 +25,22 @@ This is the desktop app version. check it out in this link:
 <img src="https://www.svgrepo.com/show/316501/arrow-down-small.svg" width='260px' height='260px'/>
 
 https://github.com/roy845/Critical-Events-Finder-Desktop
+
+## Critical events finder app that uses react router dom
+
+This is the critical events finder app that uses react router dom package and upload file (Excel/JSON) files logic in the server.
+
+check it out in this link:
+
+https://github.com/roy845/Critical-Events-Finder-React-Router-Dom
+
+Live deploy for this app:
+https://server-critical-events-finder-react.onrender.com/
+
+Swagger Docs (Server Documentation) for this app:
+https://server-critical-events-finder-react.onrender.com/api/docs
+
+- There is a cron job that periodically sends a ping request to the service every 10 minutes to keep it alive, preventing it from spinning down and causing delays when accessing the site.
 
 ## Table of Contents
 
