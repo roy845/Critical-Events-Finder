@@ -17,6 +17,9 @@ import DaysListPagination from "./DaysListPagination";
 import ItemsPerPageDaysList from "./ItemsPerPageDaysList";
 import DurationUnitSelect from "./DurationUnitSelect";
 import GraphsCarousel from "./GraphsCarousel";
+import GroupedCriticalEvents from "./GroupedCriticalEvents";
+import GroupedCriticalEventsPagination from "./GroupedCriticalEventsPagination";
+import ItemsPerPageGroupedCriticalEvents from "./ItemsPerPageGroupedCriticalEvents";
 
 const CriticalEventsForm = () => {
   const {
@@ -132,8 +135,15 @@ const CriticalEventsForm = () => {
       {criticalEvents.length > 0 && <Tabs />}
       {activeTab === "table" ? (
         <CriticalEventsTable />
-      ) : (
+      ) : activeTab === "graphs" ? (
         allCriticalEvents.length > 0 && <Graphs />
+      ) : (
+        allCriticalEvents.length > 0 && (
+          <>
+            <GroupedCriticalEvents />
+            <GroupedCriticalEventsPagination />
+          </>
+        )
       )}
     </div>
   );

@@ -36,9 +36,12 @@ const initialState: CriticalEventsState = {
   itemsPerPage: ITEMS_PER_PAGE,
   currentPageDaysList: 1,
   itemsPerPageDaysList: ITEMS_PER_PAGE,
+  currentPageGroupedCriticalEvents: 1, // New property for grouped critical events page
+  itemsPerPageGroupedCriticalEvents: ITEMS_PER_PAGE, // New property for grouped critical events items per page
   fileProperties: null,
   isGlowing: true,
   requestDuration: 0,
+  selectedLetter: "All",
 };
 
 export const fetchCriticalEvents = createAsyncThunk(
@@ -62,6 +65,9 @@ const criticalEventsSlice = createSlice({
   name: "criticalEvents",
   initialState,
   reducers: {
+    setSelectedLetter: (state, action: PayloadAction<string>) => {
+      state.selectedLetter = action.payload;
+    },
     setCriticalEvents: (state, action: PayloadAction<string[]>) => {
       state.criticalEvents = action.payload;
     },
@@ -106,6 +112,18 @@ const criticalEventsSlice = createSlice({
     },
     setRequestDuration: (state, action: PayloadAction<number>) => {
       state.requestDuration = action.payload;
+    },
+    setCurrentPageGroupedCriticalEvents: (
+      state,
+      action: PayloadAction<number>
+    ) => {
+      state.currentPageGroupedCriticalEvents = action.payload;
+    },
+    setItemsPerPageGroupedCriticalEvents: (
+      state,
+      action: PayloadAction<number>
+    ) => {
+      state.itemsPerPageGroupedCriticalEvents = action.payload;
     },
     addDays: (state) => {
       const numberOfDays = parseInt(state.daysInput, 10);
@@ -284,7 +302,91 @@ export const selectDaysTotalPages = createSelector(
       : Math.ceil(daysList.days_list.length / itemsPerPage)
 );
 
+export const selectGroupedCriticalEvents = createSelector(
+  selectFilteredCriticalEvents,
+  (criticalEvents) => {
+    const groupedEvents: Record<string, string[]> = criticalEvents.reduce(
+      (acc: Record<string, string[]>, event: string) => {
+        const firstLetter = event.charAt(0).toUpperCase();
+        if (!acc[firstLetter]) {
+          acc[firstLetter] = [];
+        }
+        acc[firstLetter].push(event);
+        return acc;
+      },
+      {}
+    );
+
+    const sortedGroupedEvents: Record<string, string[]> = Object.keys(
+      groupedEvents
+    )
+      .sort()
+      .reduce((acc: Record<string, string[]>, key: string) => {
+        acc[key] = groupedEvents[key].sort();
+        return acc;
+      }, {});
+
+    return sortedGroupedEvents;
+  }
+);
+
+export const selectPaginatedGroupedCriticalEvents = createSelector(
+  selectGroupedCriticalEvents,
+  (state: RootState) => state.criticalEvents.currentPageGroupedCriticalEvents,
+  (state: RootState) => state.criticalEvents.itemsPerPageGroupedCriticalEvents,
+  (state: RootState) => state.criticalEvents.selectedLetter,
+  (groupedEvents, currentPage, itemsPerPage, selectedLetter) => {
+    let filteredEvents = groupedEvents;
+
+    if (selectedLetter !== "All") {
+      filteredEvents = {
+        [selectedLetter]: groupedEvents[selectedLetter] || [],
+      };
+    }
+
+    if (itemsPerPage === Infinity) {
+      return filteredEvents;
+    }
+
+    const letters = Object.keys(filteredEvents).sort();
+
+    const startIndex: number = (currentPage - 1) * itemsPerPage;
+    const endIndex: number = startIndex + itemsPerPage;
+
+    const paginatedGroupedEvents = letters
+      .slice(startIndex, endIndex)
+      .reduce((acc: Record<string, string[]>, letter: string) => {
+        acc[letter] = filteredEvents[letter];
+        return acc;
+      }, {});
+
+    return paginatedGroupedEvents;
+  }
+);
+
+export const selectGroupedCriticalEventsTotalPages = createSelector(
+  selectGroupedCriticalEvents,
+  (state: RootState) => state.criticalEvents.itemsPerPageGroupedCriticalEvents,
+  (state: RootState) => state.criticalEvents.selectedLetter,
+  (groupedEvents, itemsPerPage, selectedLetter) => {
+    let filteredEvents = groupedEvents;
+
+    if (selectedLetter !== "All") {
+      filteredEvents = {
+        [selectedLetter]: groupedEvents[selectedLetter] || [],
+      };
+    }
+
+    const totalLetters = Object.keys(filteredEvents).length;
+
+    return itemsPerPage === Infinity
+      ? 1
+      : Math.ceil(totalLetters / itemsPerPage);
+  }
+);
+
 export const {
+  setSelectedLetter,
   setDaysInput,
   setDaysList,
   setIsGlowing,
@@ -307,6 +409,8 @@ export const {
   setFileProperties,
   setFilePropertiesNull,
   generateRandomDaysList,
+  setCurrentPageGroupedCriticalEvents, 
+  setItemsPerPageGroupedCriticalEvents, 
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;

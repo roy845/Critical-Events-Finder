@@ -403,9 +403,12 @@ Use the arrows to swipe graphs or hold the mouse click and swipe to left/right.
 
 ![alt text](assets/image-28.png)
 
-<b> Graphs Section </b>
+<b> Graphs Section</b>
 
 ![alt text](assets/image-29.png)
+
+<b>Grouped By Letter Critical Events</b>
+![alt text](assets/image-40.png)
 
 <b> Invalid days number input </b>
 

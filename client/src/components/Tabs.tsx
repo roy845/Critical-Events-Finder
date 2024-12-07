@@ -3,6 +3,7 @@ import { setActiveTab } from "../features/tabSlice";
 import { useDarkMode } from "../hooks/useDarKMode";
 import { CiViewTable } from "react-icons/ci";
 import { FaChartBar } from "react-icons/fa";
+import { FaLayerGroup } from "react-icons/fa";
 
 const Tabs = () => {
   const dispatch = useAppDispatch();
@@ -44,6 +45,24 @@ const Tabs = () => {
           Graphs
           <span className="mt-1">
             <FaChartBar />
+          </span>
+        </span>
+      </div>
+
+      <div
+        onClick={() => dispatch(setActiveTab("groupByLetter"))}
+        className={`px-4 py-2 cursor-pointer ${
+          activeTab === "groupByLetter"
+            ? "border-b-2 border-blue-500 text-blue-500"
+            : isDarkMode
+            ? "text-gray-300"
+            : "text-gray-700"
+        }`}
+      >
+        <span className="flex justify-center gap-4">
+          Group by Letter
+          <span className="mt-1">
+            <FaLayerGroup />
           </span>
         </span>
       </div>
