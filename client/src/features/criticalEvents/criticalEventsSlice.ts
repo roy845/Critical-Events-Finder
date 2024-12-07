@@ -36,8 +36,8 @@ const initialState: CriticalEventsState = {
   itemsPerPage: ITEMS_PER_PAGE,
   currentPageDaysList: 1,
   itemsPerPageDaysList: ITEMS_PER_PAGE,
-  currentPageGroupedCriticalEvents: 1, // New property for grouped critical events page
-  itemsPerPageGroupedCriticalEvents: ITEMS_PER_PAGE, // New property for grouped critical events items per page
+  currentPageGroupedCriticalEvents: 1,
+  itemsPerPageGroupedCriticalEvents: ITEMS_PER_PAGE,
   fileProperties: null,
   isGlowing: true,
   requestDuration: 0,
@@ -409,8 +409,8 @@ export const {
   setFileProperties,
   setFilePropertiesNull,
   generateRandomDaysList,
-  setCurrentPageGroupedCriticalEvents, 
-  setItemsPerPageGroupedCriticalEvents, 
+  setCurrentPageGroupedCriticalEvents,
+  setItemsPerPageGroupedCriticalEvents,
 } = criticalEventsSlice.actions;
 
 export default criticalEventsSlice.reducer;
