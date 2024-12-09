@@ -26,9 +26,10 @@ This is the desktop app version. check it out in this link:
 
 https://github.com/roy845/Critical-Events-Finder-Desktop
 
-## Critical events finder app that uses react router dom
+## Critical events finder app that uses react router dom and AWS S3 Storage ![alt text](assets/image-41.png)
 
 This is the critical events finder app that uses react router dom package and upload file (Excel/JSON) files logic in the server.
+also it uses AWS S3 Storage to save the files and process them later through the frontend gui.
 
 check it out in this link:
 
